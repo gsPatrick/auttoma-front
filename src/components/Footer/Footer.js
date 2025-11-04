@@ -34,9 +34,10 @@ const footerData = {
   ],
   contact: {
     phone: "(51) 92000-7893",
-    email: "comercial@defender.eng.br",
+    // ATUALIZAÇÃO: E-mail alterado
+    email: "contato@defender.eng.br",
     address: "Av. Guido Mondim, 884 - São Geraldo, Porto Alegre - RS, 90230-260",
-    cep: "CEP: 91.751-170"
+    // ATUALIZAÇÃO: CEP Removido
   }
 };
 
@@ -121,7 +122,8 @@ const Footer = () => {
             <ul className={styles.contactList}>
               <li><FaPhone /><a href={`tel:${footerData.contact.phone.replace(/\D/g, '')}`}>{footerData.contact.phone}</a></li>
               <li><FaEnvelope /><a href={`mailto:${footerData.contact.email}`}>{footerData.contact.email}</a></li>
-              <li><FaMapMarkerAlt /><span>{footerData.contact.address}<br />{footerData.contact.cep}</span></li>
+              {/* ATUALIZAÇÃO: Renderização do CEP removida */}
+              <li><FaMapMarkerAlt /><span>{footerData.contact.address}</span></li>
               <li><FaCalendarAlt /><a href="#contato" onClick={(e) => handleScrollToSection(e, 'contato')}>Agendar reunião</a></li>
             </ul>
           </div>

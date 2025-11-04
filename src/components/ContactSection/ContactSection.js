@@ -18,7 +18,6 @@ const formDataConfig = {
         { nome: "metragem", label: "Metragem (m²)", tipo: "numero", obrigatorio: false },
         { nome: "responsavel_legal", label: "Nome do responsável legal", tipo: "texto", obrigatorio: false },
         { nome: "possui_ppci", label: "Já possui PPCI?", tipo: "radio", opcoes: ["Sim", "Não"], obrigatorio: true },
-        // ATUALIZAÇÃO: Adicionado "Outro" na lista de serviços
         { nome: "servicos_interesse", label: "Serviços de Interesse", tipo: "checkbox", opcoes: ["PPCI novo", "Renovação de PPCI", "LTIP", "Laudos técnicos", "Instalações", "Treinamentos", "Manutenção", "Outro"], obrigatorio: true },
         { nome: "mensagem", label: "Detalhes do projeto ou mensagem adicional", tipo: "textarea", obrigatorio: false }
     ],
@@ -26,7 +25,8 @@ const formDataConfig = {
   },
   informacoes_contato: {
     telefone: "(51) 92000-7893",
-    email: "comercial@defender.eng.br",
+    // ATUALIZAÇÃO: E-mail alterado
+    email: "contato@defender.eng.br",
     endereco: "Av. Guido Mondim, 884 - São Geraldo, Porto Alegre - RS, 90230-260"
   }
 };
@@ -115,7 +115,6 @@ const ContactSection = () => {
     responsavel_legal: '',
     possui_ppci: '',
     servicos_interesse: [],
-    // ATUALIZAÇÃO: Novo campo de estado para o texto de "Outro"
     outro_servico_texto: '',
     mensagem: ''
   });
@@ -148,13 +147,12 @@ const ContactSection = () => {
     
     setFormStatus({ status: 'sending', message: '' });
     
-    // ATUALIZAÇÃO: Processa a lista de serviços para incluir o texto de "Outro"
     const processedServices = formData.servicos_interesse.map(service => {
         if (service === 'Outro' && formData.outro_servico_texto) {
             return `Outro: ${formData.outro_servico_texto}`;
         }
         return service;
-    }).filter(service => service !== 'Outro' || formData.outro_servico_texto); // Remove "Outro" se o campo de texto estiver vazio
+    }).filter(service => service !== 'Outro' || formData.outro_servico_texto);
 
     const apiPayload = {
       nome_completo: formData.nome_completo,
@@ -206,7 +204,6 @@ const ContactSection = () => {
                 />
               ))}
               
-              {/* ATUALIZAÇÃO: Campo de texto condicional para "Outro" */}
               {formData.servicos_interesse.includes('Outro') && (
                 <div className={`${styles.formGroup} ${styles.gridSpan12}`}>
                     <label htmlFor="outro_servico_texto">Por favor, especifique o serviço:</label>
