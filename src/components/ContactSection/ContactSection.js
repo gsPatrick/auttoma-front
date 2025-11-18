@@ -7,12 +7,11 @@ import styles from './ContactSection.module.css';
 // Importe sua função de envio real aqui, se tiver
 // import { sendQuoteRequest } from '../../../services/api.service';
 
-// Configuração baseada no PDF da Auttoma
 const formDataConfig = {
   informacoes_contato: {
-    telefone: "+55 (51) 9 8444-8616",
-    email: "carlos.bill@auttoma.com.br",
-    endereco: "Rua Liane Alves, 60, Porto Alegre - RS",
+    telefone: "(51) 3029-5468",
+    email: "contato@auttoma.com.br",
+    endereco: "Av. Guido Mondim, 884 - São Geraldo, Porto Alegre - RS",
     site: "auttoma.com.br"
   }
 };
@@ -29,7 +28,7 @@ const ContactSection = () => {
 
   const [formStatus, setFormStatus] = useState({ status: 'idle', message: '' });
 
-  // Serviços baseados no PDF
+  // Serviços baseados no portfólio da Auttoma
   const serviceOptions = [
     "Projetos Executivos",
     "Fiscalização de Obras",
@@ -75,6 +74,8 @@ const ContactSection = () => {
   };
 
   const info = formDataConfig.informacoes_contato;
+  // Número formatado para link (apenas dígitos)
+  const whatsappLinkNumber = "555130295468";
 
   return (
     <section id="contato" className={styles.contactSection}>
@@ -160,7 +161,7 @@ const ContactSection = () => {
                  <div className={styles.iconBox}><FaPhone /></div>
                  <div>
                     <span>Telefone / WhatsApp</span>
-                    <a href={`https://wa.me/5551984448616`} target="_blank" rel="noopener noreferrer">{info.telefone}</a>
+                    <a href={`https://wa.me/${whatsappLinkNumber}`} target="_blank" rel="noopener noreferrer">{info.telefone}</a>
                  </div>
                </li>
                <li>
@@ -180,16 +181,11 @@ const ContactSection = () => {
              </ul>
 
              <div className={styles.mapWrapper}>
-                {/* Embed Google Maps aproximado para Rua Liane Alves, 60, Porto Alegre */}
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.9275077687214!2d-51.1358!3d-30.0102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951977ec8d45e5e7%3A0x56789abcdef!2sRua%20Liane%20Alves%2C%2060%20-%20Porto%20Alegre%20-%20RS!5e0!3m2!1spt-BR!2sbr!4v1600000000000!5m2!1spt-BR!2sbr" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen="" 
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                {/* Embed Google Maps para Av. Guido Mondim, 884 */}
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.8993296652566!2d-51.1968331!3d-30.011046899999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951979c1c4b322c3%3A0x40d2a220ccd96669!2sAv.%20Guido%20Mondim%2C%20884%20-%20S%C3%A3o%20Geraldo%2C%20Porto%20Alegre%20-%20RS%2C%2090230-260!5e0!3m2!1sen!2sbr!4v1761244950182!5m2!1sen!2sbr"
+                  width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
+                </iframe>
              </div>
           </aside>
         </motion.div>

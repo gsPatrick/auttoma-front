@@ -3,16 +3,16 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaLinkedin, FaChevronRight, FaWhatsapp } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaLinkedin, FaFacebook, FaChevronRight, FaWhatsapp } from 'react-icons/fa';
 import styles from './Footer.module.css';
 
 const footerData = {
   info: {
     description: "Soluções inteligentes em engenharia, automação e fiscalização de obras. Transformando e protegendo seu patrimônio com eficiência e técnica.",
     social: [
-      // Links genéricos baseados no nome da empresa (ajuste conforme URLs reais)
-      { name: "Instagram", icon: <FaInstagram />, url: "https://www.instagram.com/auttoma" },
-      { name: "LinkedIn", icon: <FaLinkedin />, url: "https://www.linkedin.com/company/auttoma" }
+      { name: "Instagram", icon: <FaInstagram />, url: "https://instagram.com/auttomaengenharia" },
+      { name: "Facebook", icon: <FaFacebook />, url: "https://facebook.com/auttomaengenharia" },
+      { name: "LinkedIn", icon: <FaLinkedin />, url: "https://linkedin.com/company/auttomaengenharia" }
     ]
   },
   navigation: [
@@ -31,9 +31,10 @@ const footerData = {
     "Planos de Manutenção"
   ],
   contact: {
-    phone: "+55 (51) 9 8444-8616",
-    email: "carlos.bill@auttoma.com.br",
-    address: "Rua Liane Alves, 60, Porto Alegre - RS"
+    phone: "(51) 3029-5468",
+    whatsappLink: "555130295468",
+    email: "contato@auttoma.com.br",
+    address: "Av. Guido Mondim, 884 - São Geraldo, Porto Alegre - RS"
   }
 };
 
@@ -51,7 +52,7 @@ const Footer = () => {
   };
   
   const generateWhatsAppLink = (serviceName) => {
-    const phone = '5551984448616';
+    const phone = footerData.contact.whatsappLink;
     const text = encodeURIComponent(`Olá, gostaria de saber mais sobre ${serviceName}.`);
     return `https://wa.me/${phone}?text=${text}`;
   };
@@ -64,12 +65,12 @@ const Footer = () => {
           {/* Coluna 1: Info e Logo */}
           <div className={styles.infoColumn}>
             <Link href="/" className={styles.logoWrapper}>
-              {/* Logo Branco para fundo escuro */}
+              {/* Certifique-se de ter esta logo na pasta public */}
               <Image 
-                src="/auttoma-branco.png" 
+                src="/logo-auttoma-white.png" 
                 alt="Auttoma Engenharia" 
-                width={229} 
-                height={180} 
+                width={180} 
+                height={60} 
                 className={styles.logoImage} 
                 style={{ objectFit: 'contain' }}
               />
@@ -118,7 +119,7 @@ const Footer = () => {
             <ul className={styles.contactList}>
               <li>
                 <FaWhatsapp className={styles.contactIcon} />
-                <a href={`https://wa.me/5551984448616`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://wa.me/${footerData.contact.whatsappLink}`} target="_blank" rel="noopener noreferrer">
                   {footerData.contact.phone}
                 </a>
               </li>
