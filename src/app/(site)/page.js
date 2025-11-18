@@ -19,7 +19,6 @@ export default function Home() {
       <WhyChooseUs />
       <HowItWorksSection />
       <CtaButtonSection /> {/* 2. Adicionar a nova seção aqui */}
-      <ProjectsSection />
       <TestimonialsSection />
             <CtaButtonSection /> {/* 2. Adicionar a nova seção aqui */}
       <FaqSection />
