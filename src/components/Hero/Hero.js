@@ -8,21 +8,39 @@ import styles from './Hero.module.css';
 const slidesData = [
   {
     id: 1,
-    backgroundImage: '/images/processo-01.jpg',
-    headline: "Engenharia de Ponta em Prevenção de Incêndios",
-    subheadline: "Desenvolvemos soluções completas e personalizadas para garantir a máxima segurança do seu patrimônio.",
+    backgroundImage: '/hero/processo-01.jpg',
+    headline: "Projetos Executivos de Alta Precisão para Obras de Alto Desempenho",
+    subheadline: "Elaboramos projetos completos, compatibilizados e otimizados para garantir eficiência, segurança e redução de custos ao longo de toda a obra.",
   },
   {
     id: 2,
-    backgroundImage: '/images/processo-02.jpg',
-    headline: "Regularize seu Imóvel sem Complicações",
-    subheadline: "Nossa equipe cuida de todo o processo de aprovação do PPCI junto ao Corpo de Bombeiros, garantindo agilidade e conformidade legal.",
+    backgroundImage: '/hero/processo-02.jpg',
+    headline: "Memoriais Descritivos e Documentação Técnica",
+    subheadline: "Criamos memoriais descritivos detalhados, especificações técnicas e documentação legal conforme as normas, garantindo segurança jurídica e rastreabilidade.",
   },
   {
     id: 3,
-    backgroundImage: '/images/processo-03.jpg',
-    headline: "Tecnologia e Inovação a Serviço da Segurança",
-    subheadline: "Utilizamos as mais modernas tecnologias em sistemas de detecção, alarme e combate a incêndios.",
+    backgroundImage: '/hero/processo-03.jpg',
+    headline: "Consultoria Técnica de Engenharia para Decisões Inteligentes e Econômicas",
+    subheadline: "Acompanhamos seu empreendimento com análise especializada, ajudando a definir soluções eficientes, reduzir custos e elevar o desempenho da obra.",
+  },
+  {
+    id: 4,
+    backgroundImage: '/hero/processo-04.jpg', // Imagem reutilizada para o ciclo
+    headline: "Desempenho Operacional e Longevidade Predial",
+    subheadline: "Desenvolvemos e fiscalizamos planos de manutenção preventiva e corretiva conforme NBRs, assegurando eficiência e longevidade para todas as instalações prediais.",
+  },
+  {
+    id: 5,
+    backgroundImage: '/hero/processo-05.jpg', // Imagem reutilizada para o ciclo
+    headline: "Fiscalização Independente de Obras para Garantia Total da Qualidade",
+    subheadline: "Atuamos com rigor técnico para assegurar que a obra seja executada conforme o contratado, minimizando riscos e protegendo seu investimento.",
+  },
+  {
+    id: 6,
+    backgroundImage: '/hero/processo-06.jpg', // Imagem reutilizada para o ciclo
+    headline: "Gerenciamento Otimizado de Prazos e Custos",
+    subheadline: "Aplicamos metodologias avançadas de gestão para reduzir custos, prever riscos e garantir o controle total do cronograma.",
   },
 ];
 
@@ -42,7 +60,8 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    const slideInterval = setInterval(nextSlide, 7000);
+    // Tempo de transição aumentado levemente para dar tempo de ler os textos
+    const slideInterval = setInterval(nextSlide, 8000);
     return () => clearInterval(slideInterval);
   }, []);
 
@@ -51,7 +70,7 @@ const Hero = () => {
     const contactSection = document.getElementById('contato');
     if (contactSection) {
       window.scrollTo({
-        top: contactSection.offsetTop - 80,
+        top: contactSection.offsetTop - 90, // Ajuste para o header fixo da Auttoma
         behavior: 'smooth'
       });
     }
@@ -104,7 +123,7 @@ const Hero = () => {
             </motion.p>
             <motion.div className={styles.ctaWrapper} variants={textVariants}>
               <a href="#contato" onClick={handleScroll} className={styles.ctaPrimary}>
-                Solicitar Orçamento
+                Solicitar Proposta
               </a>
             </motion.div>
           </motion.div>
