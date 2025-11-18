@@ -1,17 +1,19 @@
-/* Header com altura ajustada e paleta Auttoma */
+/* Header com altura e padding aumentados para "suspiro" da logo */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 5%;
+  /* Padding aumentado verticalmente */
+  padding: 1.8rem 5%; 
   z-index: 1000;
   background-color: var(--color-light-primary); /* Branco */
   border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 2px 15px rgba(2, 24, 125, 0.08); /* Sombra sutil azulada */
+  box-shadow: 0 2px 15px rgba(2, 24, 125, 0.08);
   display: flex;
   align-items: center;
-  height: 90px; /* Altura fixa consistente */
+  /* Altura fixa aumentada */
+  height: 110px; 
 }
 
 .container {
@@ -42,12 +44,12 @@
   display: none;
 }
 
-/* Botão CTA - Azul com hover Amarelo (Destaque PDF) */
+/* Botão CTA */
 .ctaButton {
   background-color: var(--color-primary-blue);
   color: #FFFFFF;
   padding: 0.75rem 1.5rem;
-  border-radius: 8px; /* Bordas levemente arredondadas conforme design moderno */
+  border-radius: 8px;
   font-weight: 600;
   font-family: var(--font-heading);
   display: flex;
@@ -59,7 +61,7 @@
 
 .ctaButton:hover {
   background-color: var(--color-accent-yellow);
-  color: var(--color-primary-blue); /* Texto azul no fundo amarelo */
+  color: var(--color-primary-blue);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(2, 24, 125, 0.2);
 }
@@ -88,7 +90,8 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
   padding: 1rem 5%;
   position: absolute;
-  top: 90px; /* Logo abaixo do header */
+  /* Top ajustado para corresponder à nova altura do header */
+  top: 110px; 
   left: 0;
   border-top: 1px solid #eee;
 }
@@ -128,7 +131,6 @@
     color: var(--color-primary-blue-light);
   }
 
-  /* Efeito de sublinhado amarelo */
   .navLink::after {
     content: '';
     position: absolute;

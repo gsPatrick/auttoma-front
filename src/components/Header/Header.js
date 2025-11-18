@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
@@ -18,11 +18,12 @@ export const Header = () => {
     { targetId: 'contato', label: 'Contato' },
   ];
 
+  // Função para compensar o scroll considerando a nova altura do header (110px)
   const handleScrollToSection = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const headerHeight = 90; // Ajustado conforme globals.css
+      const headerHeight = 110; // Altura atualizada
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -41,10 +42,10 @@ export const Header = () => {
         {/* Logo Auttoma */}
         <a href="#hero" onClick={(e) => handleScrollToSection(e, 'hero')} className={styles.logo}>
           <Image
-            src="/auttoma.png" // Certifique-se de ter este arquivo em /public
+            src="/auttoma.png"
             alt="Auttoma - Soluções em Automação"
             width={220}
-            height={60}
+            height={50} // Levemente maior para aproveitar o espaço extra
             priority
             className={styles.logoImage}
           />

@@ -4,9 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './AboutSummary.module.css';
-import { FaBullseye, FaLeaf, FaUserShield, FaArrowRight, FaAward, FaHandshake } from 'react-icons/fa';
+import { FaBullseye, FaLeaf, FaArrowRight, FaAward, FaHandshake } from 'react-icons/fa';
 
-// Dados extraídos do PDF da Auttoma (Páginas 3 a 9)
+// Dados extraídos do PDF da Auttoma
 const aboutData = {
   about: {
     title: "Sobre a Auttoma Engenharia",
@@ -30,8 +30,8 @@ const aboutData = {
   },
   differentials: {
     title: "Por que escolher a Auttoma?",
-    // Imagem genérica de engenharia para substituir a de PPCI
-    image: "/images/engenharia-sobre.jpg", 
+    // Imagem atualizada conforme solicitado
+    image: "/aaautoma.jpeg", 
     paragraphs: [
       "A Auttoma se destaca pela independência e confiabilidade. Atuamos sem conflito de interesses: não executamos obras nem revendemos equipamentos.",
       "Isso nos permite tomar decisões técnicas imparciais, com foco exclusivo no sucesso do seu projeto e na otimização do 'Target Financeiro da Obra'."
@@ -44,7 +44,6 @@ const aboutData = {
 };
 
 const AboutSummary = () => {
-  // Número do WhatsApp extraído do PDF
   const whatsappUrl = "https://wa.me/5551984448616?text=" + encodeURIComponent("Olá! Vim pelo site e gostaria de conhecer mais sobre a Auttoma.");
 
   return (
@@ -84,11 +83,16 @@ const AboutSummary = () => {
             <div className={styles.diffCard}>
               <h3 className={styles.diffTitle}>{aboutData.differentials.title}</h3>
               
-              {/* Placeholder para imagem - certifique-se de ter uma imagem aqui */}
+              {/* Imagem AAAuttoma inserida aqui */}
               <div className={styles.imageWrapper}>
-                <div className={styles.imagePlaceholder}>
-                  <FaUserShield size={60} color="#02187D" opacity={0.5} />
-                </div>
+                <Image 
+                  src={aboutData.differentials.image}
+                  alt="Auttoma Engenharia"
+                  width={600}
+                  height={350}
+                  className={styles.diffImage}
+                  style={{ objectFit: 'cover' }} // Garante que preencha sem distorcer
+                />
               </div>
               
               {aboutData.differentials.paragraphs.map((p, i) => (
