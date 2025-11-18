@@ -70,7 +70,7 @@ const Footer = () => {
                 src="/auttoma-branco.png" 
                 alt="Auttoma Engenharia" 
                 width={180} 
-                height={60} 
+                height={150} 
                 className={styles.logoImage} 
                 style={{ objectFit: 'contain' }}
               />

@@ -17,8 +17,8 @@ const openSans = Open_Sans({
 });
 
 export const metadata = {
-  title: 'Admin Defender',
-  description: 'Área de administração do site Defender Engenharia.',
+  title: 'Auttoma Engenharia - Soluções em Automação',
+  description: 'Projetos, Consultoria e Fiscalização que Transformam e Protegem seu Patrimônio.',
 };
 
 export default function AdminLayout({ children }) {
