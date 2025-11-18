@@ -121,7 +121,7 @@ const ProjectsSection = () => {
               </ul>
 
               <a 
-                href={`https://wa.me/5551984448616?text=Olá, tenho interesse no ${plan.title}`}
+                href={`https://wa.me/555130295468?text=Olá, tenho interesse no ${plan.title}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.planButton}

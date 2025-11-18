@@ -54,7 +54,7 @@ const FloatingActions = () => {
     <div className={styles.floatingContainer}>
       {/* Botão do WhatsApp */}
       <a
-        href="https://wa.me/5551920007893"
+        href="https://wa.me/555130295468"
         target="_blank"
         rel="noopener noreferrer"
         className={`${styles.actionButton} ${styles.whatsappBg}`}

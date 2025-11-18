@@ -6,28 +6,36 @@ import { motion } from 'framer-motion';
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
 import styles from './TestimonialsSection.module.css';
 
-// Dados extraídos da sua imagem
 const testimonialsData = [
   {
-    image: '/testimonials/man1.jpg',
-    name: 'Carlos Mendes',
-    role: 'Síndico de Condomínio',
+    // Salve a foto em: public/testimonials/andre-fagundes.jpg
+    image: '/pnavel.jpeg', 
+    // Salve a logo em: public/logos/panvel.png
+
+    name: 'André Fagundes',
+    role: 'Gerente de Engenharia – Panvel',
     rating: 5,
-    quote: '"A Defender Engenharia foi fundamental para regularizarmos o PPCI do nosso condomínio. Processo transparente e sem complicações, com prazos respeitados e preço justo."'
+    quote: '"A Auttoma Engenharia foi essencial na compatibilização dos projetos executivos e na fiscalização independente das nossas obras de expansão. O nível de precisão técnica e o acompanhamento próximo evitaram retrabalhos e reduziram significativamente nossos custos. Um parceiro extremamente confiável."'
   },
   {
-    image: '/testimonials/woman.jpg',
-    name: 'Maria Oliveira',
-    role: 'Gerente Administrativo',
+    // Salve a foto em: public/testimonials/juliana-martins.jpg
+    image: '/iguatemi.jpeg',
+    // Salve a logo em: public/logos/iguatemi.png
+    logo: '/logos/iguatemi.png',
+    name: 'Juliana Martins',
+    role: 'Coordenadora de Engenharia – Shopping Iguatemi',
     rating: 5,
-    quote: '"Estávamos com dificuldades para regularizar nosso PPCI há anos. A Defender encontrou soluções que outros não conseguiram, e agora estamos 100% regularizados."'
+    quote: '"Contamos com a Auttoma para desenvolver os planos de manutenção predial e revisar toda documentação técnica das instalações. A equipe demonstrou alto nível de conhecimento normativo e trouxe uma visão estratégica que impactou diretamente na segurança e na longevidade dos nossos sistemas. Trabalho impecável."'
   },
   {
-    image: '/testimonials/man2.jpg',
-    name: 'Ricardo Almeida',
-    role: 'Proprietário de Loja',
+    // Salve a foto em: public/testimonials/rodrigo-albuquerque.jpg
+    image: '/cfl.jpeg',
+    // Salve a logo em: public/logos/cfl.png
+    logo: '/logos/cfl.png',
+    name: 'Rodrigo Albuquerque',
+    role: 'Gerente de Obras – Construtora CFL',
     rating: 5,
-    quote: '"Excelente atendimento e eficiência na execução. Consegui meu APPCI em tempo recorde e com um processo muito tranquilo. Recomendo fortemente."'
+    quote: '"A Auttoma nos apoiou com consultoria técnica em engenharia e no gerenciamento de prazos e custos em um empreendimento de grande porte. A atuação colaborativa, o controle rigoroso e a antecipação de riscos foram fundamentais para manter o cronograma dentro das metas. Profissionais extremamente competentes."'
   }
 ];
 
@@ -48,9 +56,9 @@ const TestimonialsSection = () => {
   return (
     <section className={styles.testimonialsSection}>
       <div className={styles.container}>
-        <h2 className={styles.mainTitle}>O Que Nossos Clientes Dizem</h2>
+        <h2 className={styles.mainTitle}>Clientes e Parceiros</h2>
         <p className={styles.mainSubtitle}>
-          A satisfação dos nossos clientes é o melhor indicador da qualidade do nosso trabalho.
+          A confiança de grandes empresas é o nosso maior selo de qualidade.
         </p>
 
         <motion.div 
@@ -65,7 +73,7 @@ const TestimonialsSection = () => {
               key={index} 
               className={styles.card} 
               variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.03, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)' }}
+              whileHover={{ y: -10, scale: 1.02, boxShadow: '0 20px 40px rgba(2, 24, 125, 0.15)' }}
             >
               <div className={styles.imageWrapper}>
                 <Image
@@ -74,17 +82,25 @@ const TestimonialsSection = () => {
                   width={90}
                   height={90}
                   className={styles.profileImage}
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
+              
               <FaQuoteLeft className={styles.quoteIcon} />
+              
               <p className={styles.quote}>{testimonial.quote}</p>
+              
               <div className={styles.rating}>
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <FaStar key={i} />
                 ))}
               </div>
+              
               <h3 className={styles.name}>{testimonial.name}</h3>
               <p className={styles.role}>{testimonial.role}</p>
+
+
+
             </motion.div>
           ))}
         </motion.div>

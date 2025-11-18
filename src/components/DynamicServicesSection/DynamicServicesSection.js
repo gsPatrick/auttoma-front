@@ -63,7 +63,7 @@ const servicesData = {
 
 const generateWhatsAppLink = (serviceName) => {
   // Número extraído do PDF da Auttoma
-  const phone = '5551984448616';
+  const phone = '555130295468';
   const baseText = 'Olá, gostaria de mais informações sobre';
   const encodedText = encodeURIComponent(`${baseText} ${serviceName}.`);
   return `https://api.whatsapp.com/send?phone=${phone}&text=${encodedText}`;

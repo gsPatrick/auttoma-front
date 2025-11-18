@@ -1,6 +1,6 @@
 .testimonialsSection {
   padding: 6rem 5%;
-  background-color: var(--color-light-secondary); /* Fundo claro para contraste */
+  background-color: var(--color-light-secondary); /* Fundo Cinza Claro */
 }
 
 .container {
@@ -12,30 +12,39 @@
 .mainTitle {
   font-size: 2.8rem;
   margin-bottom: 1rem;
+  color: var(--color-primary-blue);
 }
 
 .mainSubtitle {
   font-size: 1.1rem;
   color: #555;
-  margin-bottom: 5rem; /* Mais espaço antes dos cards */
+  margin-bottom: 5rem;
 }
 
 /* --- Grid de Depoimentos --- */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3.5rem 2rem; /* Aumenta o espaçamento para a foto ter espaço */
+  gap: 3rem 2rem;
 }
 
 .card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 2rem;
-  padding-top: 4.5rem; /* Espaço no topo para a imagem */
+  padding-top: 4.5rem; /* Espaço para a foto */
   text-align: center;
   position: relative;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:hover {
+  border-color: var(--color-accent-yellow); /* Detalhe amarelo no hover */
 }
 
 .imageWrapper {
@@ -44,59 +53,88 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  padding: 5px; /* Cria o efeito de borda branca */
+  padding: 5px;
   background: #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100px;
+  height: 100px;
 }
 
 .profileImage {
   border-radius: 50%;
-  object-fit: cover;
 }
 
 .quoteIcon {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 1.5rem;
+  left: 1.5rem;
   font-size: 3rem;
-  color: #f0f2f5;
+  color: #f5f7fa; /* Cinza muito claro */
   z-index: 0;
 }
 
 .quote {
   position: relative;
   z-index: 1;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: #555;
   font-style: italic;
   margin-bottom: 1.5rem;
+  flex-grow: 1; /* Faz com que todos os cards alinhem o rodapé */
 }
 
 .rating {
   display: flex;
   justify-content: center;
   gap: 0.3rem;
-  color: #ffc107; /* Cor de estrela dourada */
-  font-size: 1.2rem;
+  color: var(--color-accent-yellow);
+  font-size: 1.1rem;
   margin-bottom: 1rem;
 }
 
 .name {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 0.3rem;
-  color: var(--color-dark-primary);
+  color: var(--color-primary-blue);
+  font-weight: 700;
 }
 
 .role {
   color: #777;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+/* --- Container da Logo --- */
+.logoContainer {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: auto;
+}
+
+.companyLogo {
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  max-width: 140px;
+}
+
+.card:hover .companyLogo {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 /* --- Responsividade --- */
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: 1fr; /* Coluna única em tablets e celulares */
+    grid-template-columns: 1fr;
     gap: 5rem;
   }
 }

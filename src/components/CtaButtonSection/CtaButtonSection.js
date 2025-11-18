@@ -6,7 +6,7 @@ import styles from './HorizontalCtaSection.module.css';
 
 const CtaButtonSection = () => {
   // Número do PDF da Auttoma
-  const whatsappUrl = "https://wa.me/5551984448616?text=" + encodeURIComponent("Olá! Gostaria de solicitar uma proposta comercial.");
+  const whatsappUrl = "https://wa.me/555130295468?text=" + encodeURIComponent("Olá! Gostaria de solicitar uma proposta comercial.");
 
   return (
     <section className={styles.ctaSection}>
