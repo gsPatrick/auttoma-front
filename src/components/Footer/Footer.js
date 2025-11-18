@@ -3,41 +3,37 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaLinkedin, FaFacebook, FaChevronRight, FaCalendarAlt } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaLinkedin, FaChevronRight, FaWhatsapp } from 'react-icons/fa';
 import styles from './Footer.module.css';
 
 const footerData = {
   info: {
-    description: "Especialistas em PPCI, laudos técnicos e segurança contra incêndio, atendendo Porto Alegre e região com qualidade e compromisso.",
-    // LINKS DAS REDES SOCIAIS ATUALIZADOS
+    description: "Soluções inteligentes em engenharia, automação e fiscalização de obras. Transformando e protegendo seu patrimônio com eficiência e técnica.",
     social: [
-      { name: "Instagram", icon: <FaInstagram />, url: "https://www.instagram.com/defenderengenharia" },
-      { name: "LinkedIn", icon: <FaLinkedin />, url: "https://www.linkedin.com/company/defenderengenharia" },
-      { name: "Facebook", icon: <FaFacebook />, url: "https://www.facebook.com/defenderengenharia/" }
+      // Links genéricos baseados no nome da empresa (ajuste conforme URLs reais)
+      { name: "Instagram", icon: <FaInstagram />, url: "https://www.instagram.com/auttoma" },
+      { name: "LinkedIn", icon: <FaLinkedin />, url: "https://www.linkedin.com/company/auttoma" }
     ]
   },
   navigation: [
     { label: "Início", targetId: "hero" },
     { label: "Sobre Nós", targetId: "sobre" },
     { label: "Serviços", targetId: "servicos" },
-    { label: "Treinamentos", targetId: "https://treinamentos.defender.eng.br", external: true },
-    { label: "Como Funciona", targetId: "processo" },
-    { label: "FAQ", targetId: "faq" },
+    { label: "Nosso Processo", targetId: "processo" },
+    { label: "Planos de Serviço", targetId: "planos" },
     { label: "Contato", targetId: "contato" }
   ],
   services: [
-    "PPCI / APPCI",
-    "Laudos Técnicos (LTIP)",
-    "Instalações",
-    "Plataforma de Treinamentos",
-    "Manutenção"
+    "Projetos Executivos",
+    "Fiscalização de Obras",
+    "Consultoria LEED",
+    "Gestão de Contratos",
+    "Planos de Manutenção"
   ],
   contact: {
-    phone: "(51) 92000-7893",
-    // ATUALIZAÇÃO: E-mail alterado
-    email: "contato@defender.eng.br",
-    address: "Av. Guido Mondim, 884 - São Geraldo, Porto Alegre - RS, 90230-260",
-    // ATUALIZAÇÃO: CEP Removido
+    phone: "+55 (51) 9 8444-8616",
+    email: "carlos.bill@auttoma.com.br",
+    address: "Rua Liane Alves, 60, Porto Alegre - RS"
   }
 };
 
@@ -47,7 +43,7 @@ const Footer = () => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const headerHeight = 80;
+      const headerHeight = 90;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -55,8 +51,8 @@ const Footer = () => {
   };
   
   const generateWhatsAppLink = (serviceName) => {
-    const phone = '5551920007893';
-    const text = encodeURIComponent(`Olá, gostaria de saber mais sobre o serviço de ${serviceName}.`);
+    const phone = '5551984448616';
+    const text = encodeURIComponent(`Olá, gostaria de saber mais sobre ${serviceName}.`);
     return `https://wa.me/${phone}?text=${text}`;
   };
 
@@ -65,32 +61,38 @@ const Footer = () => {
       <div className={styles.container}>
         <div className={styles.grid}>
           
-          {/* Coluna 1: Info */}
+          {/* Coluna 1: Info e Logo */}
           <div className={styles.infoColumn}>
             <Link href="/" className={styles.logoWrapper}>
-              <Image src="/logonova.png" alt="Defender Engenharia" width={180} height={100} className={styles.logoImage} />
+              {/* Logo Branco para fundo escuro */}
+              <Image 
+                src="/auttoma-branco.png" 
+                alt="Auttoma Engenharia" 
+                width={229} 
+                height={180} 
+                className={styles.logoImage} 
+                style={{ objectFit: 'contain' }}
+              />
             </Link>
             <p className={styles.description}>{footerData.info.description}</p>
             <div className={styles.socialIcons}>
-              {footerData.info.social.map(s => <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.name}>{s.icon}</a>)}
+              {footerData.info.social.map(s => (
+                <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.name}>
+                  {s.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Coluna 2: Navegação Rápida */}
+          {/* Coluna 2: Navegação */}
           <div className={styles.linksColumn}>
-            <h3 className={styles.columnTitle}>Navegação Rápida</h3>
+            <h3 className={styles.columnTitle}>Navegação</h3>
             <ul className={styles.navList}>
               {footerData.navigation.map(link => (
                 <li key={link.label}>
-                  {link.external ? (
-                    <a href={link.targetId} target="_blank" rel="noopener noreferrer">
-                      <FaChevronRight /> {link.label}
-                    </a>
-                  ) : (
-                    <a href={`#${link.targetId}`} onClick={(e) => handleScrollToSection(e, link.targetId)}>
-                      <FaChevronRight /> {link.label}
-                    </a>
-                  )}
+                  <a href={`#${link.targetId}`} onClick={(e) => handleScrollToSection(e, link.targetId)}>
+                    <FaChevronRight className={styles.arrowIcon} /> {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -102,15 +104,9 @@ const Footer = () => {
             <ul className={styles.navList}>
               {footerData.services.map(service => (
                 <li key={service}>
-                  {service.includes("Plataforma") ? (
-                    <a href="https://treinamentos.defender.eng.br" target="_blank" rel="noopener noreferrer">
-                       <FaChevronRight /> {service}
-                    </a>
-                  ) : (
-                    <a href={generateWhatsAppLink(service)} target="_blank" rel="noopener noreferrer">
-                      <FaChevronRight /> {service}
-                    </a>
-                  )}
+                  <a href={generateWhatsAppLink(service)} target="_blank" rel="noopener noreferrer">
+                    <FaChevronRight className={styles.arrowIcon} /> {service}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -120,20 +116,32 @@ const Footer = () => {
           <div className={styles.contactColumn}>
             <h3 className={styles.columnTitle}>Contato</h3>
             <ul className={styles.contactList}>
-              <li><FaPhone /><a href={`tel:${footerData.contact.phone.replace(/\D/g, '')}`}>{footerData.contact.phone}</a></li>
-              <li><FaEnvelope /><a href={`mailto:${footerData.contact.email}`}>{footerData.contact.email}</a></li>
-              {/* ATUALIZAÇÃO: Renderização do CEP removida */}
-              <li><FaMapMarkerAlt /><span>{footerData.contact.address}</span></li>
-              <li><FaCalendarAlt /><a href="#contato" onClick={(e) => handleScrollToSection(e, 'contato')}>Agendar reunião</a></li>
+              <li>
+                <FaWhatsapp className={styles.contactIcon} />
+                <a href={`https://wa.me/5551984448616`} target="_blank" rel="noopener noreferrer">
+                  {footerData.contact.phone}
+                </a>
+              </li>
+              <li>
+                <FaEnvelope className={styles.contactIcon} />
+                <a href={`mailto:${footerData.contact.email}`}>
+                  {footerData.contact.email}
+                </a>
+              </li>
+              <li>
+                <FaMapMarkerAlt className={styles.contactIcon} />
+                <span>{footerData.contact.address}</span>
+              </li>
             </ul>
           </div>
 
         </div>
       </div>
+      
       <div className={styles.footerBottom}>
         <div className={styles.bottomContent}>
-          <p>© {new Date().getFullYear()} Defender Engenharia. Todos os direitos reservados.</p>
-          <p>Desenvolvido por: <a href="https://codebypatrick.dev/" target="_blank" rel="noopener noreferrer">Patrick.Developer</a></p>
+          <p>© {new Date().getFullYear()} Auttoma Engenharia. Todos os direitos reservados.</p>
+          <p>Facilitando sua vida.</p>
         </div>
       </div>
     </footer>

@@ -2,42 +2,33 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaClipboardCheck, FaShieldAlt, FaAward, FaCertificate, FaTags, FaBuilding } from 'react-icons/fa';
+import { FaAward, FaHandshake, FaShieldAlt, FaPiggyBank } from 'react-icons/fa';
 import styles from './WhyChooseUs.module.css';
 
+// Dados extraídos do PDF (Páginas 5 a 9)
 const featuresData = {
-  title: "Por que escolher a Defender Engenharia?",
-  subtitle: "Somos referência em PPCI e proteção contra incêndio, oferecendo soluções completas para sua segurança e tranquilidade.",
+  title: "Nossos Diferenciais",
+  subtitle: "Por que a Auttoma Engenharia é a escolha certa para o seu empreendimento?",
   features: [
     {
-      icon: <FaClipboardCheck />,
-      title: "Regularização Completa",
-      description: "Da documentação à aprovação no Corpo de Bombeiros com agilidade e segurança."
+      icon: <FaAward />,
+      title: "Experiência e Autoridade",
+      description: "Mais de 30 anos de atuação conferem competência técnica para projetar e fiscalizar com precisão, seguindo padrões globais de qualidade."
+    },
+    {
+      icon: <FaHandshake />,
+      title: "Independência e Confiabilidade",
+      description: "Atuação sem conflito de interesse: não executamos obras nem revendemos equipamentos, garantindo decisões técnicas imparciais."
     },
     {
       icon: <FaShieldAlt />,
-      title: "Consultoria Total",
-      description: "Todas as etapas do processo — projeto, execução, laudos, treinamento e manutenção."
+      title: "Defesa do seu Patrimônio",
+      description: "Proteção contra abusos em contratos de manutenção e cobranças indevidas, garantindo controle total sobre seus investimentos."
     },
     {
-      icon: <FaAward />,
-      title: "Ética e Transparência",
-      description: "Compromisso com responsabilidade e transparência em cada projeto que executamos."
-    },
-    {
-      icon: <FaCertificate />,
-      title: "Equipe Certificada",
-      description: "Profissionais com CREA e certificações específicas para garantir qualidade e conformidade."
-    },
-    {
-      icon: <FaTags />,
-      title: "Preço Justo",
-      description: "Orçamentos transparentes e sem surpresas, com excelente custo-benefício."
-    },
-    {
-      icon: <FaBuilding />,
-      title: "Especialistas em Imóveis",
-      description: "Experiência em regularização de empresas, condomínios e empreendimentos comerciais."
+      icon: <FaPiggyBank />,
+      title: "Foco na Eficiência e Economia",
+      description: "Consultoria que proporciona economias financeiras significativas, garantindo que cada item adquirido atenda precisamente à necessidade."
     }
   ]
 };
@@ -81,7 +72,7 @@ const WhyChooseUs = () => {
               key={index}
               className={styles.card}
               variants={itemVariants}
-              whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)' }}
+              whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(2, 24, 125, 0.1)' }}
             >
               <div className={styles.iconWrapper}>
                 {feature.icon}

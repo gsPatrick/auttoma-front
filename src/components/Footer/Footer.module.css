@@ -1,7 +1,7 @@
 .footer {
-  background-color: var(--color-dark-primary);
-  color: var(--color-light-primary);
-  padding: 5rem 5% 0 5%; /* Removido padding inferior para a barra de baixo */
+  background-color: var(--color-primary-blue); /* Azul Auttoma Escuro */
+  color: #FFFFFF;
+  padding: 5rem 5% 0 5%;
 }
 
 .container {
@@ -29,26 +29,33 @@
   margin-bottom: 0.5rem;
 }
 
-.logoImage {
-  object-fit: contain;
-}
-
 .description {
-  color: #ccc;
+  color: #e0e0e0;
   line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 .socialIcons {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
 }
+
 .socialIcons a {
-  color: #ccc;
-  font-size: 1.5rem;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-.socialIcons a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
   color: #fff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.socialIcons a:hover {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-primary-blue);
   transform: translateY(-3px);
 }
 
@@ -62,26 +69,44 @@
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
   padding-bottom: 0.8rem;
-  border-bottom: 1px solid #444;
-  font-family: var(--font-heading);
+  border-bottom: 2px solid var(--color-accent-yellow);
+  color: #fff;
+  display: inline-block;
+  width: fit-content;
 }
 
 .navList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.8rem;
 }
+
 .navList li a {
-  color: #ccc;
+  color: #e0e0e0;
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  transition: color 0.3s ease, padding-left 0.3s ease;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
 }
+
+.arrowIcon {
+  font-size: 0.8rem;
+  color: var(--color-accent-yellow);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
 .navList li a:hover {
-  color: #fff;
+  color: var(--color-accent-yellow);
   padding-left: 5px;
+}
+
+.navList li a:hover .arrowIcon {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* --- Coluna 4: Contato --- */
@@ -90,31 +115,36 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  color: #ccc;
+  color: #e0e0e0;
 }
+
 .contactList li {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
 }
-.contactList li svg {
-  margin-top: 5px;
-  font-size: 1.1rem;
+
+.contactIcon {
+  margin-top: 4px;
+  font-size: 1.2rem;
+  color: var(--color-accent-yellow);
   flex-shrink: 0;
 }
+
 .contactList a {
   transition: color 0.3s ease;
 }
-.contactList a:hover {
-  color: #fff;
-}
 
+.contactList a:hover {
+  color: var(--color-accent-yellow);
+  text-decoration: underline;
+}
 
 /* --- Barra Inferior --- */
 .footerBottom {
-  padding: 1.5rem 5%;
-  border-top: 1px solid #444;
-  background-color: var(--color-dark-primary); /* Garante a mesma cor */
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.1); /* Ligeiramente mais escuro */
 }
 
 .bottomContent {
@@ -125,18 +155,9 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #aaa;
 }
-.bottomContent a {
-  color: #fff;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-.bottomContent a:hover {
-  color: var(--color-primary-red);
-}
-
 
 /* --- Responsividade --- */
 @media (max-width: 1024px) {
@@ -148,6 +169,7 @@
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
   .bottomContent {
     flex-direction: column;

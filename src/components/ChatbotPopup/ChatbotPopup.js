@@ -1,23 +1,19 @@
-// Arquivo: /components/ChatbotPopup/ChatbotPopup.js
-
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoChatbubbles, IoClose, IoSend, IoCheckmarkDone } from 'react-icons/io5';
 import styles from './ChatbotPopup.module.css';
-import { sendQuoteRequest } from '../../../services/api.service';
+// import { sendQuoteRequest } from '../../../services/api.service';
 
-// ATUALIZAÇÃO: Script do formulário com um novo passo condicional
+// Roteiro adaptado para Auttoma Engenharia
 const formScript = [
-  { id: 'start', question: 'Para começar, qual é o seu nome?', key: 'nome', type: 'text' },
-  { id: 'phone', question: 'Ótimo! E qual o seu celular com DDD para contato?', key: 'celular', type: 'text' },
-  { id: 'email', question: 'Perfeito. Agora, qual seu melhor e-mail?', key: 'email', type: 'text' },
-  { id: 'ppci_check', question: 'O imóvel já possui PPCI (Plano de Prevenção Contra Incêndio)?', key: 'possui_ppci', type: 'radio', options: ['Sim', 'Não', 'Não sei informar'] },
-  { id: 'services', question: 'Quais destes serviços você tem interesse? (Pode marcar vários)', key: 'servicos', type: 'checkbox', options: ["PPCI novo", "Renovação de PPCI", "LTIP", "Laudos técnicos", "Instalações", "Treinamentos", "Manutenção", "Outro"] },
-  // NOVO PASSO: Este passo só será executado se "Outro" for selecionado
-  { id: 'other_text', question: 'Você marcou "Outro". Por favor, especifique qual serviço você precisa:', key: 'outro_servico_texto', type: 'text' },
-  { id: 'final', question: 'Excelente! Recebemos suas informações. Nossa equipe de especialistas já está analisando e entrará em contato em breve. Muito obrigado!' }
+  { id: 'start', question: 'Olá! Bem-vindo à Auttoma. Qual é o seu nome?', key: 'nome', type: 'text' },
+  { id: 'email', question: 'Prazer! Qual é o seu melhor e-mail para contato?', key: 'email', type: 'text' },
+  { id: 'phone', question: 'E seu telefone/WhatsApp com DDD?', key: 'celular', type: 'text' },
+  { id: 'type', question: 'Para qual tipo de imóvel você precisa de ajuda?', key: 'tipo_imovel', type: 'radio', options: ['Empresa', 'Condomínio', 'Indústria', 'Outro'] },
+  { id: 'services', question: 'Quais serviços você tem interesse? (Marque quantos quiser)', key: 'servicos', type: 'checkbox', options: ["Fiscalização de Obras", "Projetos Executivos", "Consultoria LEED", "Planos de Manutenção", "Gestão de Custos", "Não sei informar"] },
+  { id: 'final', question: 'Perfeito! Recebemos suas informações. Um de nossos engenheiros analisará sua demanda e entrará em contato em breve.' }
 ];
 
 const TypingIndicator = () => (
@@ -41,12 +37,12 @@ const ChatbotPopup = ({ isExpanded }) => {
         if (isOpen && messages.length === 0) {
             setIsTyping(true);
             setTimeout(() => {
-                setMessages([{ id: 'intro1', sender: 'bot', text: 'Olá! Bem-vindo à Defender Engenharia.' }]);
+                setMessages([{ id: 'intro1', sender: 'bot', text: 'Olá! Eu sou o assistente virtual da Auttoma.' }]);
                 setTimeout(() => {
                     setIsTyping(false);
                     setMessages(prev => [...prev, { id: 'intro2', sender: 'bot', text: formScript[0].question }]);
-                }, 1200);
-            }, 800);
+                }, 1000);
+            }, 500);
         }
     }, [isOpen]);
 
@@ -74,15 +70,7 @@ const ChatbotPopup = ({ isExpanded }) => {
 
     const goToNextStep = (updatedLeadData) => {
         setIsTyping(true);
-        let nextStepIndex = currentStep + 1;
-
-        // ATUALIZAÇÃO: Lógica para pular o passo "other_text" se "Outro" não foi selecionado
-        if (formScript[nextStepIndex] && formScript[nextStepIndex].id === 'other_text') {
-            const services = updatedLeadData.servicos || '';
-            if (!services.includes('Outro')) {
-                nextStepIndex++; // Pula o passo
-            }
-        }
+        const nextStepIndex = currentStep + 1;
 
         setTimeout(async () => {
             setIsTyping(false);
@@ -91,40 +79,17 @@ const ChatbotPopup = ({ isExpanded }) => {
                 const nextQuestion = { ...formScript[nextStepIndex] };
 
                 if (nextQuestion.id === 'final') {
-                    // ATUALIZAÇÃO: Processa a lista de serviços para incluir o texto de "Outro"
-                    const servicesList = (updatedLeadData.servicos || '').split(', ');
-                    const finalServices = servicesList.map(s => {
-                        if (s === 'Outro' && updatedLeadData.outro_servico_texto) {
-                            return `Outro: ${updatedLeadData.outro_servico_texto}`;
-                        }
-                        return s;
-                    }).filter(service => service !== 'Outro' || updatedLeadData.outro_servico_texto).join(', ');
-
-                    const apiPayload = {
-                        nome_completo: updatedLeadData.nome || 'Não informado',
-                        celular: updatedLeadData.celular || 'Não informado',
-                        email: updatedLeadData.email || 'Não informado',
-                        possui_ppci: updatedLeadData.possui_ppci || 'Não informado',
-                        servicos_interesse: finalServices,
-                        endereco_imovel: 'Não coletado via chatbot',
-                        metragem: 'Não coletado via chatbot',
-                        responsavel_legal: 'Não coletado via chatbot',
-                        mensagem_adicional: 'Lead capturado pelo Assistente Virtual do site.'
-                    };
+                    // Aqui você chamaria sua API real
+                    console.log("Lead Capturado:", updatedLeadData);
                     
-                    try {
-                        await sendQuoteRequest(apiPayload);
-                    } catch (error) {
-                        console.error('Falha ao enviar lead do chatbot:', error);
-                        nextQuestion.question = "Tivemos um problema ao registrar seus dados. Por favor, tente usar nosso formulário de contato ou chame no WhatsApp.";
-                    }
+                    // try { await sendQuoteRequest(updatedLeadData); } catch(e) {}
                     setIsCompleted(true);
                 }
 
                 setMessages(prev => [...prev, { id: nextQuestion.id, sender: 'bot', text: nextQuestion.question }]);
                 setCurrentStep(nextStepIndex);
             }
-        }, 1500);
+        }, 1200);
     };
 
     const handleFormSubmit = (e) => {
@@ -142,12 +107,13 @@ const ChatbotPopup = ({ isExpanded }) => {
 
     const renderInputArea = () => {
         if (isCompleted) {
-            return <div className={styles.completedMessage}><IoCheckmarkDone /> Conversa finalizada!</div>;
+            return <div className={styles.completedMessage}><IoCheckmarkDone /> Atendimento Finalizado</div>;
         }
         const currentQuestion = formScript[currentStep];
         if (!currentQuestion || isTyping) {
             return <div className={styles.inputAreaDisabled}></div>;
         }
+        
         switch (currentQuestion.type) {
             case 'text':
                 return (
@@ -173,7 +139,7 @@ const ChatbotPopup = ({ isExpanded }) => {
                                 </div>
                             ))}
                         </div>
-                        <button onClick={handleCheckboxSubmit} className={styles.confirmButton} disabled={selectedCheckboxOptions.length === 0}>Confirmar Seleção</button>
+                        <button onClick={handleCheckboxSubmit} className={styles.confirmButton} disabled={selectedCheckboxOptions.length === 0}>Confirmar</button>
                     </div>
                 );
             default:
@@ -191,7 +157,6 @@ const ChatbotPopup = ({ isExpanded }) => {
             <AnimatePresence>
                 {!isOpen && (
                     <motion.button 
-                      id="chatbot-toggle-button"
                       key="bubble" 
                       className={styles.chatBubble} 
                       onClick={() => setIsOpen(true)} 
@@ -199,24 +164,27 @@ const ChatbotPopup = ({ isExpanded }) => {
                       animate={{ scale: 1 }} 
                       exit={{ scale: 0 }}
                     >
-                        <IoChatbubbles size={28} />
+                        <IoChatbubbles size={26} />
                         <motion.span
                             variants={textVariants}
                             initial="hidden"
                             animate={isExpanded ? 'visible' : 'hidden'}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
                             className={styles.buttonText}
                         >
-                          Fale com Especialista
+                          Falar com Especialista
                         </motion.span>
                     </motion.button>
                 )}
             </AnimatePresence>
+            
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div key="window" className={styles.chatWindow} initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }}>
+                    <motion.div key="window" className={styles.chatWindow} initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 50, opacity: 0 }}>
                         <header className={styles.chatHeader}>
-                            <h3>Assistente Virtual Defender</h3>
+                            <div>
+                                <h3>Auttoma Assistente</h3>
+                                <span className={styles.status}>Online agora</span>
+                            </div>
                             <button onClick={() => setIsOpen(false)} className={styles.closeButton}><IoClose /></button>
                         </header>
                         <div className={styles.messageArea} ref={messageAreaRef}>

@@ -2,107 +2,19 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import styles from './ContactSection.module.css';
-import { sendQuoteRequest } from '../../../services/api.service';
+// Importe sua função de envio real aqui, se tiver
+// import { sendQuoteRequest } from '../../../services/api.service';
 
+// Configuração baseada no PDF da Auttoma
 const formDataConfig = {
-  formulario_orcamento: {
-    titulo: "Solicite um Orçamento Detalhado",
-    descricao: "Preencha o formulário e nossa equipe de engenheiros retornará o mais breve possível.",
-    campos: [
-        { nome: "nome_completo", label: "Nome Completo", tipo: "texto", obrigatorio: true },
-        { nome: "celular", label: "Celular / WhatsApp", tipo: "telefone", obrigatorio: true },
-        { nome: "email", label: "Seu Melhor E-mail", tipo: "email", obrigatorio: true },
-        { nome: "endereco", label: "Endereço completo do imóvel", tipo: "texto", obrigatorio: true },
-        { nome: "metragem", label: "Metragem (m²)", tipo: "numero", obrigatorio: false },
-        { nome: "responsavel_legal", label: "Nome do responsável legal", tipo: "texto", obrigatorio: false },
-        { nome: "possui_ppci", label: "Já possui PPCI?", tipo: "radio", opcoes: ["Sim", "Não"], obrigatorio: true },
-        { nome: "servicos_interesse", label: "Serviços de Interesse", tipo: "checkbox", opcoes: ["PPCI novo", "Renovação de PPCI", "LTIP", "Laudos técnicos", "Instalações", "Treinamentos", "Manutenção", "Outro"], obrigatorio: true },
-        { nome: "mensagem", label: "Detalhes do projeto ou mensagem adicional", tipo: "textarea", obrigatorio: false }
-    ],
-    botao: { texto: "Enviar e Receber Orçamento", acao: "submit" }
-  },
   informacoes_contato: {
-    telefone: "(51) 92000-7893",
-    // ATUALIZAÇÃO: E-mail alterado
-    email: "contato@defender.eng.br",
-    endereco: "Av. Guido Mondim, 884 - São Geraldo, Porto Alegre - RS, 90230-260"
+    telefone: "+55 (51) 9 8444-8616",
+    email: "carlos.bill@auttoma.com.br",
+    endereco: "Rua Liane Alves, 60, Porto Alegre - RS",
+    site: "auttoma.com.br"
   }
-};
-
-const FieldRenderer = ({ field, formData, handleChange, handleCheckboxChange }) => {
-    const isRequired = field.obrigatorio;
-    const label = `${field.label}${isRequired ? '*' : ''}`;
-
-    const getFieldClassName = () => {
-        switch (field.nome) {
-          case 'nome_completo': return styles.gridSpan4;
-          case 'celular': return styles.gridSpan4;
-          case 'email': return styles.gridSpan4;
-          case 'endereco': return styles.gridSpan8;
-          case 'metragem': return styles.gridSpan4;
-          case 'responsavel_legal': return styles.gridSpan12;
-          case 'possui_ppci': return styles.gridSpan12;
-          case 'servicos_interesse': return styles.gridSpan12;
-          case 'mensagem': return styles.gridSpan12;
-          default: return '';
-        }
-    };
-  
-    switch (field.tipo) {
-      case 'texto':
-      case 'telefone':
-      case 'email':
-      case 'numero':
-        return (
-          <div className={`${styles.formGroup} ${getFieldClassName()}`}>
-            <label htmlFor={field.nome}>{label}</label>
-            <input type={field.tipo === 'texto' ? 'text' : field.tipo} id={field.nome} name={field.nome} required={isRequired} value={formData[field.nome]} onChange={handleChange} />
-          </div>
-        );
-      case 'textarea':
-        return (
-          <div className={`${styles.formGroup} ${getFieldClassName()}`}>
-            <label htmlFor={field.nome}>{label}</label>
-            <textarea id={field.nome} name={field.nome} rows="3" required={isRequired} value={formData[field.nome]} onChange={handleChange}></textarea>
-          </div>
-        );
-      case 'radio':
-        return (
-          <div className={`${styles.formGroup} ${getFieldClassName()}`}>
-            <fieldset>
-              <legend>{label}</legend>
-              <div className={styles.optionsGroup}>
-                {field.opcoes.map(option => (
-                  <div key={option} className={styles.optionItem}>
-                    <input type="radio" id={`${field.nome}_${option}`} name={field.nome} value={option} required={isRequired} checked={formData[field.nome] === option} onChange={handleChange} />
-                    <label htmlFor={`${field.nome}_${option}`}>{option}</label>
-                  </div>
-                ))}
-              </div>
-            </fieldset>
-          </div>
-        );
-      case 'checkbox':
-        return (
-          <div className={`${styles.formGroup} ${getFieldClassName()}`}>
-            <fieldset>
-              <legend>{label}</legend>
-              <div className={styles.optionsGroupCheckbox}>
-                {field.opcoes.map(option => (
-                  <div key={option} className={styles.optionItem}>
-                    <input type="checkbox" id={`${field.nome}_${option}`} name="servicos_interesse" value={option} checked={formData.servicos_interesse.includes(option)} onChange={handleCheckboxChange} />
-                    <label htmlFor={`${field.nome}_${option}`}>{option}</label>
-                  </div>
-                ))}
-              </div>
-            </fieldset>
-          </div>
-        );
-      default:
-        return null;
-    }
 };
 
 const ContactSection = () => {
@@ -110,16 +22,23 @@ const ContactSection = () => {
     nome_completo: '',
     celular: '',
     email: '',
-    endereco: '',
-    metragem: '',
-    responsavel_legal: '',
-    possui_ppci: '',
+    empresa: '',
     servicos_interesse: [],
-    outro_servico_texto: '',
     mensagem: ''
   });
 
   const [formStatus, setFormStatus] = useState({ status: 'idle', message: '' });
+
+  // Serviços baseados no PDF
+  const serviceOptions = [
+    "Projetos Executivos",
+    "Fiscalização de Obras",
+    "Consultoria Estratégica",
+    "Planos de Manutenção",
+    "Gerenciamento de Custos",
+    "Plano Bronze/Prata/Ouro",
+    "Outro"
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -147,31 +66,12 @@ const ContactSection = () => {
     
     setFormStatus({ status: 'sending', message: '' });
     
-    const processedServices = formData.servicos_interesse.map(service => {
-        if (service === 'Outro' && formData.outro_servico_texto) {
-            return `Outro: ${formData.outro_servico_texto}`;
-        }
-        return service;
-    }).filter(service => service !== 'Outro' || formData.outro_servico_texto);
-
-    const apiPayload = {
-      nome_completo: formData.nome_completo,
-      celular: formData.celular,
-      email: formData.email,
-      endereco_imovel: formData.endereco,
-      metragem: formData.metragem,
-      responsavel_legal: formData.responsavel_legal,
-      possui_ppci: formData.possui_ppci,
-      servicos_interesse: processedServices.join(', '),
-      mensagem_adicional: formData.mensagem
-    };
-
-    try {
-      await sendQuoteRequest(apiPayload);
-      setFormStatus({ status: 'success', message: 'Obrigado! Sua solicitação foi enviada com sucesso.' });
-    } catch (error) {
-      setFormStatus({ status: 'error', message: error.message || 'Falha ao enviar. Tente novamente mais tarde.' });
-    }
+    // Simulação de envio - Substitua pela sua chamada de API real
+    setTimeout(() => {
+       console.log("Dados enviados:", formData);
+       setFormStatus({ status: 'success', message: 'Recebemos sua mensagem! Entraremos em contato em breve.' });
+       setFormData({ nome_completo: '', celular: '', email: '', empresa: '', servicos_interesse: [], mensagem: '' });
+    }, 1500);
   };
 
   const info = formDataConfig.informacoes_contato;
@@ -184,65 +84,113 @@ const ContactSection = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7 }}
         >
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <h2 className={styles.title}>
-              Solicite um <span className={styles.titleHighlight}>Orçamento</span> Detalhado
-            </h2>
+          {/* Lado Esquerdo: Formulário */}
+          <div className={styles.formWrapper}>
+            <h2 className={styles.title}>Fale com a Gente</h2>
             <p className={styles.description}>
-              {formDataConfig.formulario_orcamento.descricao}
+              Entre em contato hoje mesmo e descubra como a Auttoma Engenharia pode impulsionar o seu sucesso.
             </p>
-            <div className={styles.formGrid}>
-              {formDataConfig.formulario_orcamento.campos.map(field => (
-                <FieldRenderer 
-                  key={field.nome} 
-                  field={field}
-                  formData={formData}
-                  handleChange={handleChange}
-                  handleCheckboxChange={handleCheckboxChange}
-                />
-              ))}
-              
-              {formData.servicos_interesse.includes('Outro') && (
-                <div className={`${styles.formGroup} ${styles.gridSpan12}`}>
-                    <label htmlFor="outro_servico_texto">Por favor, especifique o serviço:</label>
-                    <input
-                        type="text"
-                        id="outro_servico_texto"
-                        name="outro_servico_texto"
-                        value={formData.outro_servico_texto}
-                        onChange={handleChange}
-                        placeholder="Ex: Laudo de estanqueidade de gás"
-                        required
-                    />
+            
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.inputGroup}>
+                <div className={styles.field}>
+                  <label htmlFor="nome_completo">Nome Completo*</label>
+                  <input type="text" id="nome_completo" name="nome_completo" required value={formData.nome_completo} onChange={handleChange} />
                 </div>
-              )}
-            </div>
-             <button type="submit" className={styles.submitButton} disabled={formStatus.status === 'sending'}>
-                {formStatus.status === 'sending' ? 'Enviando...' : formDataConfig.formulario_orcamento.botao.texto}
-             </button>
-             {formStatus.message && (
+                <div className={styles.field}>
+                  <label htmlFor="empresa">Empresa / Condomínio</label>
+                  <input type="text" id="empresa" name="empresa" value={formData.empresa} onChange={handleChange} />
+                </div>
+              </div>
+
+              <div className={styles.inputGroup}>
+                <div className={styles.field}>
+                  <label htmlFor="celular">Celular / WhatsApp*</label>
+                  <input type="tel" id="celular" name="celular" required value={formData.celular} onChange={handleChange} />
+                </div>
+                <div className={styles.field}>
+                  <label htmlFor="email">E-mail*</label>
+                  <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} />
+                </div>
+              </div>
+
+              <div className={styles.field}>
+                <label>Como podemos ajudar? (Selecione)</label>
+                <div className={styles.checkboxGrid}>
+                  {serviceOptions.map(option => (
+                    <div key={option} className={styles.checkboxItem}>
+                      <input 
+                        type="checkbox" 
+                        id={`srv-${option}`} 
+                        value={option} 
+                        checked={formData.servicos_interesse.includes(option)} 
+                        onChange={handleCheckboxChange} 
+                      />
+                      <label htmlFor={`srv-${option}`}>{option}</label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor="mensagem">Mensagem Adicional</label>
+                <textarea id="mensagem" name="mensagem" rows="3" value={formData.mensagem} onChange={handleChange}></textarea>
+              </div>
+
+              <button type="submit" className={styles.submitButton} disabled={formStatus.status === 'sending'}>
+                {formStatus.status === 'sending' ? 'Enviando...' : 'Enviar Solicitação'}
+              </button>
+
+              {formStatus.message && (
                 <p className={`${styles.formMessage} ${formStatus.status === 'success' ? styles.success : styles.error}`}>
                     {formStatus.message}
                 </p>
-             )}
-          </form>
+              )}
+            </form>
+          </div>
 
+          {/* Lado Direito: Informações de Contato (Azul Escuro) */}
           <aside className={styles.infoSidebar}>
-             <h3 className={styles.sidebarTitle}>Contato Direto</h3>
+             <h3 className={styles.sidebarTitle}>Nossos Canais</h3>
+             
              <ul className={styles.contactList}>
-               <li><FaPhone className={styles.icon} /><div><span>Telefone</span><a href={`tel:${info.telefone.replace(/\D/g, '')}`}>{info.telefone}</a></div></li>
-               <li><FaEnvelope className={styles.icon} /><div><span>E-mail</span><a href={`mailto:${info.email}`}>{info.email}</a></div></li>
-               <li><FaMapMarkerAlt className={styles.icon} /><div><span>Endereço</span><p>{info.endereco}</p></div></li>
+               <li>
+                 <div className={styles.iconBox}><FaPhone /></div>
+                 <div>
+                    <span>Telefone / WhatsApp</span>
+                    <a href={`https://wa.me/5551984448616`} target="_blank" rel="noopener noreferrer">{info.telefone}</a>
+                 </div>
+               </li>
+               <li>
+                 <div className={styles.iconBox}><FaEnvelope /></div>
+                 <div>
+                    <span>E-mail</span>
+                    <a href={`mailto:${info.email}`}>{info.email}</a>
+                 </div>
+               </li>
+               <li>
+                 <div className={styles.iconBox}><FaMapMarkerAlt /></div>
+                 <div>
+                    <span>Endereço</span>
+                    <p>{info.endereco}</p>
+                 </div>
+               </li>
              </ul>
+
              <div className={styles.mapWrapper}>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.8993296652566!2d-51.1968331!3d-30.011046899999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951979c1c4b322c3%3A0x40d2a220ccd96669!2sAv.%20Guido%20Mondim%2C%20884%20-%20S%C3%A3o%20Geraldo%2C%20Porto%20Alegre%20-%20RS%2C%2090230-260!5e0!3m2!1sen!2sbr!4v1761244950182!5m2!1sen!2sbr"
-                  width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
-                </iframe>
+                {/* Embed Google Maps aproximado para Rua Liane Alves, 60, Porto Alegre */}
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.9275077687214!2d-51.1358!3d-30.0102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951977ec8d45e5e7%3A0x56789abcdef!2sRua%20Liane%20Alves%2C%2060%20-%20Porto%20Alegre%20-%20RS!5e0!3m2!1spt-BR!2sbr!4v1600000000000!5m2!1spt-BR!2sbr" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen="" 
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
              </div>
-             <div className={styles.sidebarFooter}><p>Equipe Defender</p></div>
           </aside>
         </motion.div>
       </div>

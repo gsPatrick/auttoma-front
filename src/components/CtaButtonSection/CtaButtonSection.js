@@ -2,12 +2,11 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight } from 'react-icons/fa';
 import styles from './HorizontalCtaSection.module.css';
 
-const HorizontalCtaSection = () => {
-  // Constrói o link do WhatsApp com uma mensagem padrão
-  const whatsappUrl = "https://wa.me/5551920007893?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento.");
+const CtaButtonSection = () => {
+  // Número do PDF da Auttoma
+  const whatsappUrl = "https://wa.me/5551984448616?text=" + encodeURIComponent("Olá! Gostaria de solicitar uma proposta comercial.");
 
   return (
     <section className={styles.ctaSection}>
@@ -19,8 +18,8 @@ const HorizontalCtaSection = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className={styles.textWrapper}>
-          <h3>Pronto para Garantir sua Segurança?</h3>
-          <p>Não espere por imprevistos. Regularize seu imóvel agora.</p>
+          <h3>Pronto para otimizar seus custos?</h3>
+          <p>Não adie mais a segurança e a eficiência do seu investimento.</p>
         </div>
         <a 
           href={whatsappUrl} 
@@ -28,11 +27,11 @@ const HorizontalCtaSection = () => {
           rel="noopener noreferrer" 
           className={styles.ctaButton}
         >
-          Solicitar Orçamento
+          Solicitar Proposta
         </a>
       </motion.div>
     </section>
   );
 };
 
-export default HorizontalCtaSection;
+export default CtaButtonSection;

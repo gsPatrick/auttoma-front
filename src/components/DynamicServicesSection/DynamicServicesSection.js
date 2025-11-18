@@ -2,43 +2,69 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaFileContract, FaCertificate, FaHardHat, FaUsers, FaSyncAlt, FaArrowRight } from 'react-icons/fa';
+import { 
+  FaProjectDiagram, 
+  FaFileAlt, 
+  FaChess, 
+  FaChartLine, 
+  FaClipboardCheck, 
+  FaBuilding, 
+  FaArrowRight 
+} from 'react-icons/fa';
 import styles from './DynamicServicesSection.module.css';
 
-// ESTRUTURA DE DADOS (sem a propriedade 'image')
+// Dados extraídos do PDF da Auttoma Engenharia
 const servicesData = {
   servicos: [
     { 
-      categoria: "Projetos e Regularização", 
-      icon: <FaFileContract />, 
-      itens: [ "PPCI – Plano de Prevenção e Proteção Contra Incêndio", "APPCI / AVCB – Alvará de Prevenção e Proteção Contra Incêndio", "PRPCI – Projeto Executivo de Prevenção", "Regularização para eventos temporários (shows, feiras)", "Licenciamento de Central de Gás (GLP, natural)", "Compartimentação vertical e horizontal" ] 
+      categoria: "Projetos e Documentação", 
+      icon: <FaProjectDiagram />, 
+      itens: [ 
+        {
+          titulo: "Projetos Executivos de Alta Performance",
+          descricao: "Elaboração detalhada com análise minuciosa de interferências e compatibilização entre todas as disciplinas, garantindo integração perfeita e funcionalidade."
+        },
+        {
+          titulo: "Memoriais Descritivos e Documentação Técnica",
+          descricao: "Transparência e conformidade através da elaboração de documentos que detalham produtos, serviços e instalações, garantindo segurança jurídica e rastreabilidade."
+        }
+      ] 
     },
     { 
-      categoria: "Laudos e Certificações", 
-      icon: <FaCertificate />, 
-      itens: [ "LTIP – Laudo Técnico de Inspeção Predial", "Laudo SPDA (Para-raio)", "Laudo de controle de material de acabamento", "Laudo de segurança estrutural", "Laudo elétrico", "Laudo populacional" ] 
+      categoria: "Consultoria e Gestão", 
+      icon: <FaChess />, 
+      itens: [ 
+        {
+          titulo: "Consultoria Estratégica em Engenharia",
+          descricao: "Suporte técnico especializado em todas as fases de implantação, com foco na otimização de custos e benefícios para garantir o melhor valor agregado."
+        },
+        {
+          titulo: "Gerenciamento Otimizado de Prazos e Custos",
+          descricao: "Estratégias para eficiência financeira, redução de custos e rigoroso controle para cumprimento dos prazos estabelecidos, garantindo previsibilidade."
+        }
+      ] 
     },
     { 
-      categoria: "Execução e Instalações", 
-      icon: <FaHardHat />, 
-      itens: [ "Instalação de guarda-corpo e corrimão", "Sinalização e iluminação de emergência", "Alarmes, detecção e extração de fumaça", "Sistemas de hidrantes e sprinklers", "Sistemas de proteção de coifa", "Aplicação de produtos anti-chamas (ignifugação)", "Obras e manutenções diversas" ] 
-    },
-    { 
-      categoria: "Treinamentos e Planos", 
-      icon: <FaUsers />, 
-      itens: [ "Formação de brigada de emergência", "Treinamentos em prevenção e combate a incêndios", "Prestação de serviço de bombeiro civil", "Certificados de brigadistas", "Planos de emergência", "Mapas de evacuação" ] 
-    },
-    { 
-      categoria: "Manutenção", 
-      icon: <FaSyncAlt />, 
-      itens: [ "Contratos de manutenção preventiva", "Manutenção corretiva", "Acompanhamento periódico legal", "Renovação de documentações", "Vistorias regulares", "Atualização conforme novas normas" ] 
+      categoria: "Obras e Manutenção", 
+      icon: <FaClipboardCheck />, 
+      itens: [ 
+        {
+          titulo: "Fiscalização Independente de Obras",
+          descricao: "Atuação como consultoria independente para assegurar a qualidade dos materiais, conformidade das instalações e proteção do seu investimento."
+        },
+        {
+          titulo: "Desempenho Operacional e Longevidade Predial",
+          descricao: "Elaboração e fiscalização de planos de manutenção inteligentes baseados nas NBRs, assegurando a durabilidade e sustentabilidade dos ativos prediais."
+        }
+      ] 
     }
   ]
 };
 
 const generateWhatsAppLink = (serviceName) => {
-  const phone = '5551920007893';
-  const baseText = 'Olá, gostaria de consultar o serviço de';
+  // Número extraído do PDF da Auttoma
+  const phone = '5551984448616';
+  const baseText = 'Olá, gostaria de mais informações sobre';
   const encodedText = encodeURIComponent(`${baseText} ${serviceName}.`);
   return `https://api.whatsapp.com/send?phone=${phone}&text=${encodedText}`;
 };
@@ -51,7 +77,9 @@ const DynamicServicesSection = () => {
     <section id="servicos" className={styles.servicesSection}>
       <div className={styles.container}>
         <h2 className={styles.title}>Nossos Serviços</h2>
-        <p className={styles.subtitle}>Oferecemos um conjunto completo de soluções em prevenção e proteção contra incêndio para todos os tipos de edificações.</p>
+        <p className={styles.subtitle}>
+          Soluções completas em engenharia, desde a concepção do projeto até a manutenção predial, focadas em eficiência e proteção do patrimônio.
+        </p>
 
         <div className={styles.categoryTabs}>
           {servicesData.servicos.map((service, index) => (
@@ -86,7 +114,7 @@ const DynamicServicesSection = () => {
               {currentCategory.itens.map((item, index) => (
                 <motion.a
                   key={index}
-                  href={generateWhatsAppLink(item)}
+                  href={generateWhatsAppLink(item.titulo)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.serviceCard}
@@ -95,9 +123,10 @@ const DynamicServicesSection = () => {
                     visible: { opacity: 1, y: 0 }
                   }}
                 >
-                  <h3 className={styles.serviceTitle}>{item}</h3>
+                  <h3 className={styles.serviceTitle}>{item.titulo}</h3>
+                  <p className={styles.serviceDescription}>{item.descricao}</p>
                   <div className={styles.consultLink}>
-                    Consultar este serviço <FaArrowRight />
+                    Saiba mais <FaArrowRight />
                   </div>
                 </motion.a>
               ))}

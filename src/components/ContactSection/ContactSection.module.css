@@ -1,215 +1,232 @@
-/* --- Seção Principal --- */
 .contactSection {
   width: 100%;
-  min-height: 100vh;
-  background-color: var(--color-dark-primary);
-  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  overflow: hidden;
+  padding: 6rem 5%;
+  background-color: var(--color-light-secondary); /* Fundo claro para a seção */
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* --- Painel Central --- */
+/* --- Painel Principal (Card Flutuante) --- */
 .mainPanel {
   display: grid;
-  grid-template-columns: 2.5fr 1fr;
-  background: #222;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  grid-template-columns: 1.5fr 1fr;
+  background: #fff;
   border-radius: 16px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(2, 24, 125, 0.15); /* Sombra azulada */
+  overflow: hidden;
 }
 
-/* --- Área do Formulário (Esquerda) --- */
-.form {
-  padding: 3rem 3.5rem;
+/* --- Lado Esquerdo (Formulário) --- */
+.formWrapper {
+  padding: 3rem;
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #fff;
+  font-size: 2.2rem;
+  color: var(--color-primary-blue);
   margin-bottom: 0.5rem;
-}
-
-.titleHighlight {
-  background: linear-gradient(90deg, var(--color-primary-red), var(--color-primary-red-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .description {
-  color: #aaa;
+  color: #666;
   margin-bottom: 2rem;
-  max-width: 500px;
 }
 
-.formGrid {
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
 
-.formGroup { margin-bottom: 0; }
-.gridSpan4 { grid-column: span 4; }
-.gridSpan8 { grid-column: span 8; }
-.gridSpan12 { grid-column: span 12; }
-
-.formGroup label, .formGroup legend {
+.field label {
   display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-dark-text);
   margin-bottom: 0.5rem;
-  font-weight: 500;
-  font-size: 0.8rem;
-  color: #ccc;
-  text-transform: uppercase;
 }
 
-.formGroup fieldset { border: none; padding: 0; margin: 0; }
-
-.formGroup input, .formGroup textarea {
+.field input, 
+.field textarea {
   width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid #444;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 0.95rem;
-  background-color: #2a2a2a;
-  color: #fff;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
-.formGroup input:focus, .formGroup textarea:focus {
+.field input:focus, 
+.field textarea:focus {
   outline: none;
-  border-color: var(--color-primary-red);
-  box-shadow: 0 0 0 3px rgba(255, 9, 8, 0.2);
+  border-color: var(--color-primary-blue);
+  box-shadow: 0 0 0 3px rgba(2, 24, 125, 0.1);
 }
 
-.optionsGroup { display: flex; gap: 1.5rem; }
-
-.optionsGroupCheckbox {
+/* Checkboxes Customizados */
+.checkboxGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.8rem;
-}
-
-.optionItem { display: flex; align-items: center; gap: 0.6rem; }
-
-.optionItem label {
-  font-weight: 400; color: #ccc; cursor: pointer; text-transform: none;
-}
-
-.optionItem input[type="radio"], .optionItem input[type="checkbox"] {
-  width: auto; cursor: pointer; accent-color: var(--color-primary-red);
-}
-
-.submitButton {
-  width: 100%;
-  margin-top: 1.5rem;
+  background-color: #f9f9f9;
   padding: 1rem;
-  background: var(--color-primary-red);
+  border-radius: 8px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkboxItem input {
+  width: auto;
+  accent-color: var(--color-primary-blue);
+}
+
+.checkboxItem label {
+  font-weight: 400;
+  margin: 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Botão Enviar */
+.submitButton {
+  background-color: var(--color-primary-blue);
   color: #fff;
+  padding: 1rem;
   border: none;
   border-radius: 6px;
+  font-weight: 700;
   font-size: 1.1rem;
-  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .submitButton:hover {
-  background: var(--color-primary-red-light);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(255, 9, 8, 0.2);
+  background-color: var(--color-accent-yellow);
+  color: var(--color-primary-blue);
 }
 
-/* --- Barra Lateral (Direita) --- */
+.submitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Mensagens de Status */
+.formMessage {
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+}
+.success { background-color: #d1fae5; color: #065f46; }
+.error { background-color: #fee2e2; color: #991b1b; }
+
+/* --- Lado Direito (Sidebar Azul) --- */
 .infoSidebar {
-  background-color: #1c1c1c;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0 16px 16px 0;
+  background-color: var(--color-primary-blue);
+  color: #fff;
   padding: 3rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .sidebarTitle {
-  font-size: 1.5rem;
-  color: #fff;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
-  border-bottom: 1px solid #444;
-  padding-bottom: 1rem;
+  color: var(--color-accent-yellow);
 }
 
-.contactList { list-style: none; padding: 0; margin: 0; }
-.contactList li { display: flex; gap: 1rem; margin-bottom: 2rem; }
-.icon { font-size: 1.2rem; color: var(--color-primary-red); margin-top: 4px; }
-.contactList span { display: block; font-size: 0.8rem; color: #888; text-transform: uppercase; margin-bottom: 0.2rem; }
-.contactList a, .contactList p { font-size: 1rem; color: #eee; margin: 0; }
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
-/* --- NOVOS ESTILOS PARA O MAPA --- */
+.contactList li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.iconBox {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-accent-yellow);
+}
+
+.contactList span {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contactList a, .contactList p {
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.contactList a:hover {
+  color: var(--color-accent-yellow);
+  text-decoration: underline;
+}
+
+/* Mapa */
 .mapWrapper {
   width: 100%;
-  height: 220px; /* Altura do mapa */
-  border-radius: 8px;
-  overflow: hidden; /* Garante que o iframe respeite o border-radius */
-  flex-grow: 1; /* Faz o mapa preencher o espaço disponível */
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.sidebarFooter {
-  text-align: center;
-  color: #666;
-  font-style: italic;
-  margin-top: 2rem;
-  flex-shrink: 0; /* Impede que o rodapé encolha */
-}
-
-/* --- Responsividade --- */
-@media (max-width: 1200px) {
+/* Responsividade */
+@media (max-width: 992px) {
   .mainPanel {
     grid-template-columns: 1fr;
   }
-  .contactSection {
-    min-height: auto;
-    padding: 4rem 1rem;
-  }
+  
   .infoSidebar {
-    border-radius: 0 0 16px 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    order: -1; /* Traz a info para cima no mobile, opcional */
+    padding: 2rem;
   }
-  .optionsGroupCheckbox {
-    grid-template-columns: repeat(2, 1fr);
+  
+  .formWrapper {
+    padding: 2rem;
   }
 }
 
-@media (max-width: 768px) {
-  .gridSpan4 { grid-column: span 12; }
-  .gridSpan8 { grid-column: span 12; }
-  .form { padding: 2rem; }
-}
-
-/* Adicione ao final do seu arquivo ContactSection.module.css */
-
-.formMessage {
-  margin-top: 1rem;
-  padding: 0.8rem 1rem;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: 500;
-}
-
-.formMessage.success {
-  background-color: rgba(4, 120, 87, 0.2);
-  color: #069566;
-  border: 1px solid rgba(4, 120, 87, 0.3);
-}
-
-.formMessage.error {
-  background-color: rgba(220, 38, 38, 0.1);
-  color: #f87171;
-  border: 1px solid rgba(220, 38, 38, 0.2);
+@media (max-width: 600px) {
+  .inputGroup, .checkboxGrid {
+    grid-template-columns: 1fr;
+  }
 }

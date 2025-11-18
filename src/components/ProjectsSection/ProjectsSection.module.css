@@ -1,94 +1,218 @@
-/* --- Seção Principal --- */
-.certificationsSection {
-  padding: 6rem 5%;
-  /* ALTERAÇÃO 1: Fundo da seção MANTIDO como escuro. */
-  background-color: var(--color-dark-primary); 
-  color: var(--color-light-primary);
+.plansSection {
+  padding: 5rem 5%;
+  background-color: #f4f6f8; /* Fundo levemente cinza para contraste */
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1100px; /* Container um pouco mais estreito para compactar */
   margin: 0 auto;
   text-align: center;
 }
 
 .mainTitle {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary-blue);
 }
 
 .mainSubtitle {
-  font-size: 1.1rem;
-  color: #ccc;
-  margin-bottom: 4rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 3rem;
 }
 
-/* --- Grid de Cards --- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  align-items: start; /* Impede que estiquem verticalmente */
 }
 
+/* --- Card Base --- */
 .card {
-  /* ALTERAÇÃO 2: Fundo do card agora é BRANCO sólido. */
-  background-color: var(--color-light-primary);
+  background: #fff;
+  border-radius: 8px; /* Bordas menos arredondadas (mais quadradas) */
+  padding: 1.5rem; /* Padding reduzido */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border-top-width: 5px; /* Faixa colorida no topo */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  border-color: var(--color-primary-red);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-.logoWrapper {
-  height: 90px;
+/* --- Cores Específicas (Borda Topo + Ícone) --- */
+.bronze { border-top-color: #cd7f32; }
+.bronze .iconBox { color: #cd7f32; background-color: rgba(205, 127, 50, 0.1); }
+
+.silver { border-top-color: #7f8c8d; }
+.silver .iconBox { color: #7f8c8d; background-color: rgba(127, 140, 141, 0.1); }
+
+.gold { border-top-color: var(--color-accent-yellow); }
+.gold .iconBox { color: #d4a017; background-color: rgba(242, 201, 76, 0.15); }
+
+/* Destaque "Popular" */
+.popularCard {
+  border-color: var(--color-accent-yellow); /* Borda completa amarela se popular */
+  border-top-width: 5px;
+  background-color: #fff;
+  box-shadow: 0 10px 25px rgba(242, 201, 76, 0.15);
+  /* Não aumenta o tamanho (scale) para manter consistência */
+}
+
+.popularBadge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-accent-yellow);
+  color: var(--color-primary-blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.8rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* --- Header do Card --- */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.iconBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px; /* Ícone quadrado com borda suave */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
 }
 
-.logoWrapper img {
-  filter: none !important;
-  opacity: 1 !important;
+.planTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-dark-text);
+  margin: 0;
 }
 
-.cardTitle {
-  font-size: 1.3rem;
-  /* ALTERAÇÃO 3: Cor do título alterada para ESCURO. */
-  color: var(--color-dark-primary);
-  margin-bottom: 0.8rem;
-  font-family: var(--font-heading);
+/* --- Preço --- */
+.priceBox {
+  text-align: left;
+  margin-bottom: 1rem;
 }
 
-.cardDescription {
-  font-size: 0.9rem;
-  /* ALTERAÇÃO 4: Cor da descrição alterada para um CINZA ESCURO. */
+.currency {
+  font-size: 1rem;
+  vertical-align: top;
+  margin-right: 2px;
   color: #555;
-  line-height: 1.6;
+}
+
+.amount {
+  font-size: 2.2rem; /* Tamanho reduzido */
+  font-weight: 800;
+  color: var(--color-primary-blue);
+  line-height: 1;
+}
+
+.unit {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 500;
+}
+
+/* --- Divisor --- */
+.divider {
+  height: 1px;
+  background-color: #eee;
+  margin-bottom: 1rem;
+}
+
+/* --- Lista --- */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.featureList li {
+  font-size: 0.9rem; /* Texto menor */
+  color: #555;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  line-height: 1.4;
+}
+
+.checkIcon {
+  color: var(--color-primary-blue);
+  font-size: 0.85rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* --- Botão --- */
+.planButton {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--color-primary-blue);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.planButton:hover {
+  background-color: var(--color-primary-blue-light);
+}
+
+/* Estilo específico para botão no card popular */
+.popularCard .planButton {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-primary-blue);
+}
+
+.popularCard .planButton:hover {
+  background-color: #deb238; /* Amarelo mais escuro */
 }
 
 /* --- Responsividade --- */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    justify-content: center;
+  }
+  
+  .card {
+    max-width: 350px;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
   }
-  .mainTitle {
-    font-size: 2.2rem;
+  .plansSection {
+    padding: 3rem 5%;
   }
 }

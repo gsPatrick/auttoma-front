@@ -4,57 +4,55 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './AboutSummary.module.css';
-import { FaBullseye, FaTasks, FaGem, FaArrowRight } from 'react-icons/fa';
+import { FaBullseye, FaLeaf, FaUserShield, FaArrowRight, FaAward, FaHandshake } from 'react-icons/fa';
 
+// Dados extraídos do PDF da Auttoma (Páginas 3 a 9)
 const aboutData = {
   about: {
-    title: "Sobre a Defender Engenharia",
+    title: "Sobre a Auttoma Engenharia",
     items: [
       { 
         icon: <FaBullseye />, 
         title: "Nossa Missão", 
-        text: "Prestar serviços de engenharia com alto padrão, atendendo as exigências do PPCI, com foco em qualidade, custo justo, segurança de vidas e patrimônio." 
+        text: "Criada com o objetivo de oferecer suporte técnico especializado, auxiliando clientes na identificação de problemas, na compatibilidade de projetos e na redução de custos gerados por retrabalhos." 
       },
       { 
-        icon: <FaTasks />, 
-        title: "Nossa Experiência", 
-        text: "Acumulamos anos de experiência em projetos de PPCI para diversos setores, regularizando empresas, condomínios, edifícios comerciais e industriais. Nossa equipe tem sólida formação técnica e está em constante atualização sobre normas e legislações." 
+        icon: <FaLeaf />, 
+        title: "Conceito LEED", 
+        text: "Nosso trabalho incorpora o conceito LEED (Leadership in Energy and Environmental Design), promovendo a qualidade e a eficiência energética em sistemas prediais inteligentes." 
       },
       { 
-        icon: <FaGem />, 
-        title: "Nossos Valores", 
-        list: [
-          "Ética e transparência em todas as nossas ações",
-          "Compromisso com resultados efetivos",
-          "Respeito à vida e segurança acima de tudo",
-          "Capacitação constante da nossa equipe",
-          "Relacionamento honesto com nossos clientes"
-        ] 
+        icon: <FaAward />, 
+        title: "30 Anos de Excelência", 
+        text: "Com mais de três décadas de atuação, nossa experiência nos confere a competência técnica para projetar e fiscalizar soluções prediais com precisão e padrão global de qualidade." 
       }
     ]
   },
-  ppci: {
-    title: "Por que o PPCI é importante?",
-    image: "/images/PPCI.png",
+  differentials: {
+    title: "Por que escolher a Auttoma?",
+    // Imagem genérica de engenharia para substituir a de PPCI
+    image: "/images/engenharia-sobre.jpg", 
     paragraphs: [
-      "O Plano de Prevenção e Proteção Contra Incêndio (PPCI) não é apenas uma obrigação legal, mas uma ferramenta essencial para a segurança das pessoas e do patrimônio.",
-      "No Rio Grande do Sul, a Lei Complementar 14.376/2013 (Lei Kiss) tornou obrigatória a regularização de edifícios, estabelecendo severas penalidades para responsáveis legais que não mantenham suas edificações em conformidade."
+      "A Auttoma se destaca pela independência e confiabilidade. Atuamos sem conflito de interesses: não executamos obras nem revendemos equipamentos.",
+      "Isso nos permite tomar decisões técnicas imparciais, com foco exclusivo no sucesso do seu projeto e na otimização do 'Target Financeiro da Obra'."
     ],
     commitment: {
-      title: "Compromisso Defender",
-      text: "Nossa equipe está comprometida não apenas com a regularização documental, mas principalmente com a segurança efetiva de cada projeto que realizamos. Trabalhamos para que você tenha tranquilidade e proteção real, não apenas documentos para cumprir exigências."
+      title: "Defesa do seu Patrimônio",
+      text: "Nossa fiscalização atua como um escudo contra abusos, impedindo contratos de manutenção com valores abusivos ou cobranças por serviços desnecessários. Garantimos que você tenha controle total sobre seus investimentos."
     }
   }
 };
 
 const AboutSummary = () => {
-  const whatsappUrl = "https://wa.me/5551920007893?text=" + encodeURIComponent("Olá! Vim pela seção 'Sobre' e gostaria de solicitar um orçamento.");
+  // Número do WhatsApp extraído do PDF
+  const whatsappUrl = "https://wa.me/5551984448616?text=" + encodeURIComponent("Olá! Vim pelo site e gostaria de conhecer mais sobre a Auttoma.");
 
   return (
     <section id="sobre" className={styles.aboutSection}>
       <div className={styles.container}>
         <div className={styles.grid}>
-          {/* Coluna da Esquerda (SEM o card de CTA) */}
+          
+          {/* Coluna da Esquerda: Sobre e Missão */}
           <motion.div 
             className={styles.aboutContent}
             initial={{ opacity: 0, x: -50 }}
@@ -69,46 +67,42 @@ const AboutSummary = () => {
                 <div className={styles.infoIcon}>{item.icon}</div>
                 <div>
                   <h3 className={styles.infoTitle}>{item.title}</h3>
-                  {item.text && <p className={styles.infoText}>{item.text}</p>}
-                  {item.list && (
-                    <ul className={styles.valuesList}>
-                      {item.list.map((value, i) => <li key={i}>{value}</li>)}
-                    </ul>
-                  )}
+                  <p className={styles.infoText}>{item.text}</p>
                 </div>
               </div>
             ))}
           </motion.div>
 
-          {/* Coluna da Direita: Importância do PPCI */}
+          {/* Coluna da Direita: Diferenciais e Independência */}
           <motion.div 
-            className={styles.ppciContent}
+            className={styles.diffContent}
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className={styles.ppciCard}>
-              <h3 className={styles.ppciTitle}>{aboutData.ppci.title}</h3>
+            <div className={styles.diffCard}>
+              <h3 className={styles.diffTitle}>{aboutData.differentials.title}</h3>
+              
+              {/* Placeholder para imagem - certifique-se de ter uma imagem aqui */}
               <div className={styles.imageWrapper}>
-                <Image 
-                  src={aboutData.ppci.image} 
-                  alt="Extintores de incêndio" 
-                  width={500} 
-                  height={250} 
-                  className={styles.ppciImage}
-                />
+                <div className={styles.imagePlaceholder}>
+                  <FaUserShield size={60} color="#02187D" opacity={0.5} />
+                </div>
               </div>
-              {aboutData.ppci.paragraphs.map((p, i) => <p key={i} className={styles.ppciText}>{p}</p>)}
+              
+              {aboutData.differentials.paragraphs.map((p, i) => (
+                <p key={i} className={styles.diffText}>{p}</p>
+              ))}
               
               <div className={styles.commitmentBox}>
-                <h4>{aboutData.ppci.commitment.title}</h4>
-                <p>{aboutData.ppci.commitment.text}</p>
+                <h4><FaHandshake className={styles.boxIcon} /> {aboutData.differentials.commitment.title}</h4>
+                <p>{aboutData.differentials.commitment.text}</p>
               </div>
             </div>
           </motion.div>
           
-          {/* Card de CTA agora é um item direto do grid */}
+          {/* Card de CTA */}
           <motion.div
             className={styles.ctaCard}
             initial={{ opacity: 0, y: 30 }}
@@ -116,15 +110,17 @@ const AboutSummary = () => {
             viewport={{ once: true, amount: 0.8 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h3>Sua Segurança é Nossa Prioridade</h3>
-            <p>Fale com nossos engenheiros e receba uma proposta detalhada para o seu projeto.</p>
+            <div className={styles.ctaContent}>
+              <h3>Excelência e Economia para seu Empreendimento</h3>
+              <p>Fale com nossos especialistas e descubra como podemos otimizar seus custos.</p>
+            </div>
             <a 
               href={whatsappUrl} 
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaCardButton}
             >
-              Solicitar Orçamento <FaArrowRight />
+              Falar com a Gente <FaArrowRight />
             </a>
           </motion.div>
 

@@ -32,11 +32,12 @@
   left: 0;
   width: 100%;
   height: 100%;
+  /* Gradiente ajustado para tons de Azul Escuro/Preto para combinar com a marca */
   background: linear-gradient(
     to right,
-    rgba(5, 5, 10, 0.85) 0%,
-    rgba(5, 5, 10, 0.8) 40%,
-    rgba(5, 5, 10, 0.2) 65%,
+    rgba(2, 24, 125, 0.9) 0%,   /* Azul Auttoma escuro */
+    rgba(2, 24, 125, 0.75) 40%,
+    rgba(5, 5, 10, 0.3) 65%,
     transparent 80%
   );
   z-index: 1;
@@ -64,7 +65,7 @@
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
   line-height: 1.7;
-  color: #ccc;
+  color: #e0e0e0;
   max-width: 600px;
 }
 
@@ -74,6 +75,7 @@
   gap: 1rem;
 }
 
+/* Botão Principal com Cores Auttoma */
 .ctaPrimary {
   padding: 0.9rem 2.2rem;
   font-family: var(--font-heading);
@@ -84,15 +86,19 @@
   text-align: center;
   border: 2px solid transparent;
   cursor: pointer;
-  background-color: var(--color-primary-red);
+  /* Cor Normal: Azul Auttoma */
+  background-color: var(--color-primary-blue);
   color: #fff;
-  border-color: var(--color-primary-red);
+  border-color: var(--color-primary-blue);
 }
+
 .ctaPrimary:hover {
-  background-color: var(--color-primary-red-light);
-  border-color: var(--color-primary-red-light);
+  /* Hover: Amarelo Destaque com texto Azul */
+  background-color: var(--color-accent-yellow);
+  border-color: var(--color-accent-yellow);
+  color: var(--color-primary-blue);
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(255, 9, 8, 0.2);
+  box-shadow: 0 10px 20px rgba(2, 24, 125, 0.3);
 }
 
 .carouselControls {
@@ -124,7 +130,7 @@
   justify-content: center;
 }
 .controlButton:hover {
-  color: #fff;
+  color: var(--color-accent-yellow); /* Hover do ícone em amarelo */
   transform: scale(1.1);
 }
 
@@ -157,7 +163,7 @@
 }
 
 .progressBar.active {
-  background-color: #fff;
+  background-color: var(--color-accent-yellow); /* Barra ativa em amarelo */
 }
 
 
@@ -173,7 +179,7 @@
     height: 85vh;
   }
   .overlay {
-    background: rgba(5, 5, 10, 0.7);
+    background: rgba(2, 24, 125, 0.75); /* Azul mais sólido no mobile */
   }
   .headline, .subheadline, .ctaWrapper {
     max-width: 100%;

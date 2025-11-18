@@ -1,34 +1,56 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { FaMedal, FaTrophy, FaCrown, FaCheck } from 'react-icons/fa';
 import styles from './ProjectsSection.module.css';
 
-const certificationsData = [
+// Dados dos Planos
+const plansData = [
   { 
-    src: '/logos/cert-crea.png', 
-    alt: 'CREA-RS',
-    title: "Registro Profissional",
-    description: "Empresa registrada e habilitada pelo CREA-RS para execução de projetos e obras de engenharia."
+    title: "Plano Bronze",
+    price: "R$ 7,50",
+    unit: "/ economia",
+    icon: <FaMedal />,
+    styleClass: styles.bronze,
+    features: [
+      "Inspeção Predial",
+      "Suporte (Tel/Email)",
+      "Avaliação Elétrica",
+      "Análise de Propostas",
+      "Sistemas de Segurança",
+      "Visitas Trimestrais",
+      "Avaliação PPCI (7 sistemas)"
+    ]
   },
   { 
-    src: '/logos/cert-abnt.png', 
-    alt: 'ABNT',
-    title: "Normas Técnicas",
-    description: "Projetos desenvolvidos em total conformidade com as normas ABNT, garantindo qualidade e segurança."
+    title: "Plano Prata",
+    price: "R$ 10,00",
+    unit: "",
+    icon: <FaTrophy />,
+    styleClass: styles.silver,
+    features: [
+      "Todas do Bronze",
+      "Laudos LTIP Anuais",
+      "Acompanhamento Técnico",
+      "Visitas Bimestrais",
+      "Fiscalização Rigorosa"
+    ]
   },
   { 
-    src: '/logos/cert-bombeiros.png', 
-    alt: 'Corpo de Bombeiros',
-    title: "Conformidade Legal",
-    description: "Soluções aprovadas e em conformidade com as regulamentações do Corpo de Bombeiros."
-  },
-  { 
-    src: '/logos/cert-garantia.png', 
-    alt: 'Selo de Garantia',
-    title: "Qualidade Assegurada",
-    description: "Compromisso com a excelência e garantia de um ano em todos os serviços prestados."
+    title: "Plano Ouro",
+    price: "R$ 15,00",
+    unit: "",
+    icon: <FaCrown />,
+    styleClass: styles.gold,
+    isPopular: true,
+    features: [
+      "Todas do Prata",
+      "Gestão de Contratos",
+      "Acompanhamento Intensivo",
+      "Visitas Mensais",
+      "Proteção Total"
+    ]
   },
 ];
 
@@ -36,31 +58,28 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.15 }
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 120 } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },
 };
 
 const ProjectsSection = () => {
   return (
-    <section id="certificacoes" className={styles.certificationsSection}>
+    <section id="planos" className={styles.plansSection}>
       <div className={styles.container}>
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <h2 className={styles.mainTitle}>Qualidade e Segurança Comprovadas</h2>
+          <h2 className={styles.mainTitle}>Nossos Planos</h2>
           <p className={styles.mainSubtitle}>
-            Somos uma empresa certificada e comprometida com as mais rigorosas normas técnicas. Sua segurança é a nossa prioridade.
+            Soluções escaláveis para a gestão do seu patrimônio.
           </p>
         </motion.div>
 
@@ -69,21 +88,46 @@ const ProjectsSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
-          {certificationsData.map((cert, index) => (
-            <motion.div key={index} className={styles.card} variants={itemVariants}>
-              <div className={styles.logoWrapper}>
-                <Image
-                  src={cert.src}
-                  alt={cert.alt}
-                  width={150}
-                  height={70}
-                  style={{ objectFit: 'contain' }}
-                />
+          {plansData.map((plan, index) => (
+            <motion.div 
+              key={index} 
+              className={`${styles.card} ${plan.styleClass} ${plan.isPopular ? styles.popularCard : ''}`} 
+              variants={itemVariants}
+            >
+              {plan.isPopular && <span className={styles.popularBadge}>Recomendado</span>}
+              
+              <div className={styles.cardHeader}>
+                <div className={styles.iconBox}>{plan.icon}</div>
+                <h3 className={styles.planTitle}>{plan.title}</h3>
               </div>
-              <h3 className={styles.cardTitle}>{cert.title}</h3>
-              <p className={styles.cardDescription}>{cert.description}</p>
+
+              <div className={styles.priceBox}>
+                <span className={styles.currency}>R$</span>
+                <span className={styles.amount}>{plan.price.replace('R$ ', '')}</span>
+                {plan.unit && <span className={styles.unit}>{plan.unit}</span>}
+              </div>
+
+              <div className={styles.divider}></div>
+
+              <ul className={styles.featureList}>
+                {plan.features.map((feature, i) => (
+                  <li key={i}>
+                    <FaCheck className={styles.checkIcon} />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <a 
+                href={`https://wa.me/5551984448616?text=Olá, tenho interesse no ${plan.title}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.planButton}
+              >
+                Contratar Agora
+              </a>
             </motion.div>
           ))}
         </motion.div>

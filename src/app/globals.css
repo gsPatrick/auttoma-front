@@ -1,3 +1,5 @@
+/* --- START OF FILE globals.css --- */
+
 /* Reset básico e fontes */
 * {
   box-sizing: border-box;
@@ -12,17 +14,31 @@
 */
 html, body {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 :root {
-  /* Paleta de Cores DEFENDER */
-  --color-primary-red: #ff0908;
-  --color-primary-red-light: #fb3b3a;
-  --color-support-beige: #e4baa8;
-  --color-dark-primary: #1e1e1e;
-  --color-dark-secondary: #000000;
+  /* Paleta de Cores AUTTOMA ENGENHARIA */
+  
+  /* Cor Primária (Azul Escuro do PDF) */
+  --color-primary-blue: #02187D;
+  --color-primary-blue-light: #1a35a6; /* Variação mais clara para hover */
+  
+  /* Cor de Destaque (Amarelo/Dourado dos elementos gráficos do PDF) */
+  --color-accent-yellow: #F2C94C; 
+  --color-accent-yellow-hover: #deb238;
+
+  /* Cores Neutras e de Fundo */
   --color-light-primary: #FFFFFF;
-  --color-light-secondary: #F5F7FA;
+  --color-light-secondary: #F5F7FA; /* Cinza muito claro para alternância de seções */
+  
+  /* Cores de Texto */
+  --color-dark-primary: #02187D; /* Títulos agora usam o azul da marca */
+  --color-dark-text: #333333;    /* Texto corrido */
+  --color-dark-secondary: #000000;
+
+  /* Variáveis de Apoio (Herdadas/Ajustadas) */
+  --color-support-gray: #e0e0e0;
 
   /* Tipografia */
   --font-body: 'Open Sans', sans-serif;
@@ -30,26 +46,61 @@ html, body {
 }
 
 body {
-  color: var(--color-dark-primary);
+  color: var(--color-dark-text);
   background: var(--color-light-primary);
   font-family: var(--font-body);
+  line-height: 1.6;
 }
 
 /* 
   ================================================================
-  => REGRA ATUALIZADA PARA CORRIGIR O CORTE DO HEADER
+  => REGRA PARA O HEADER FIXO
   ================================================================
 */
 main {
-  padding-top: 80px; /* Aumentado para corresponder à nova altura do header */
+  padding-top: 90px; /* Espaço para o header fixo */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
+  color: var(--color-primary-blue); /* Títulos em azul por padrão */
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: var(--font-heading);
+}
+
+/* Utilitários Globais */
+.text-center { text-align: center; }
+.text-primary { color: var(--color-primary-blue); }
+.text-accent { color: var(--color-accent-yellow); }
+.bg-light { background-color: var(--color-light-secondary); }
+
+/* Scrollbar Personalizada (Opcional para Chrome/Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-blue);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-blue-light);
 }

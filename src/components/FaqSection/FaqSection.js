@@ -1,119 +1,80 @@
-
-
 'use client';
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp, FaQuestionCircle } from 'react-icons/fa';
 import styles from './FaqSection.module.css';
 
-const faqData = {
-  title: "Perguntas Frequentes",
-  subtitle: "Tire suas dúvidas sobre PPCI, laudos técnicos e os serviços da Defender Engenharia.",
-  questions: [
-    {
-      question: "O que é PPCI e quem precisa ter?",
-      answer: "O PPCI (Plano de Prevenção e Proteção Contra Incêndio) é um conjunto de medidas estruturais, técnicas e organizacionais que visam evitar o surgimento de incêndio, limitar sua propagação, possibilitar sua extinção e proporcionar a proteção à vida, ao meio ambiente e ao patrimônio. Todas as edificações, exceto residências unifamiliares, precisam ter PPCI, incluindo empresas, comércios, indústrias, condomínios residenciais, escritórios, etc."
-    },
-    {
-      question: "Qual a diferença entre PPCI, APPCI e AVCB?",
-      answer: "PPCI é o plano/projeto técnico. APPCI (Alvará de Prevenção e Proteção Contra Incêndio) no RS, ou AVCB (Auto de Vistoria do Corpo de Bombeiros) em outros estados, é o documento final emitido pelos Bombeiros que certifica que a edificação está em conformidade com as normas de segurança."
-    },
-    {
-      question: "Qual o prazo para obter um PPCI aprovado?",
-      answer: "O prazo varia conforme a complexidade do projeto e a demanda do Corpo de Bombeiros local. Nosso processo é otimizado para garantir a máxima agilidade, cuidando de toda a tramitação para acelerar a aprovação."
-    },
-    {
-      question: "O que é o LTIP e quem precisa ter?",
-      answer: "O LTIP (Laudo Técnico de Inspeção Predial) é uma avaliação completa da estrutura e sistemas de uma edificação. É obrigatório para edifícios comerciais e residenciais com marquises ou sacadas, visando garantir a estabilidade e segurança estrutural."
-    },
-    {
-      question: "Quais são as penalidades para quem não regulariza o PPCI?",
-      answer: "A falta de um PPCI válido pode resultar em multas, interdição do imóvel e, em caso de sinistro, a responsabilização civil e criminal dos proprietários e administradores, conforme estipulado pela Lei Kiss (Lei Complementar 14.376/2013 no RS)."
-    },
-    {
-      question: "O que é necessário para solicitar um orçamento?",
-      answer: "Para um orçamento preciso, precisamos de informações básicas como o endereço do imóvel, a área total construída (m²), o tipo de ocupação (comercial, residencial, industrial) e, se possível, o número de pavimentos. Entre em contato e nossa equipe o guiará."
-    }
-  ],
-  cta: {
-    title: "Ainda tem dúvidas?",
-    text: "Entre em contato conosco para obter informações específicas sobre o seu caso. Nossa equipe técnica está pronta para ajudar.",
-    buttons: [
-      { text: "Falar com um especialista", type: "primary" },
-      { text: "Agendar uma consulta", type: "secondary" }
-    ]
+const faqData = [
+  {
+    question: "O que significa 'Fiscalização Independente' e por que é importante?",
+    answer: "Significa que a Auttoma não executa obras nem vende equipamentos. Isso elimina conflitos de interesse, garantindo que nossas decisões e relatórios técnicos sejam 100% imparciais e focados exclusivamente na qualidade, no cumprimento das normas e na defesa do seu patrimônio."
+  },
+  {
+    question: "Como a Auttoma ajuda na redução de custos da obra?",
+    answer: "Atuamos na otimização de custos e benefícios desde a análise técnica dos orçamentos até a fiscalização. Evitamos a compra de itens desnecessários, prevenimos retrabalhos através da compatibilização de projetos e blindamos o cliente contra cobranças abusivas de fornecedores."
+  },
+  {
+    question: "Vocês atendem quais tipos de empreendimentos?",
+    answer: "Atendemos condomínios residenciais, edifícios comerciais, indústrias e empresas corporativas. Nossa expertise cobre desde a fase de projeto executivo até a manutenção e gestão predial de empreendimentos já ocupados."
+  },
+  {
+    question: "O que é o conceito LEED mencionado nos serviços?",
+    answer: "LEED (Leadership in Energy and Environmental Design) é um sistema internacional de certificação ambiental. Aplicamos esses conceitos para projetar sistemas prediais inteligentes que garantem eficiência energética, sustentabilidade e redução de custos operacionais a longo prazo."
+  },
+  {
+    question: "Como funcionam os Planos de Serviço (Bronze, Prata, Ouro)?",
+    answer: "Nossos planos são estruturados para oferecer diferentes níveis de acompanhamento. O Bronze foca em diagnósticos pontuais; o Prata adiciona laudos anuais e visitas bimestrais; e o Ouro oferece gestão completa de contratos e visitas mensais. Escolha o que melhor se adapta à necessidade do seu imóvel."
   }
-};
-
-const FaqItem = ({ item, isOpen, onClick }) => {
-  return (
-    <div className={styles.faqItem}>
-      <button className={styles.question} onClick={onClick}>
-        <span>{item.question}</span>
-        <div className={styles.icon}>{isOpen ? <FaMinus /> : <FaPlus />}</div>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className={styles.answer}
-            initial={{ opacity: 0, height: 0, marginTop: 0 }}
-            animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
-            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            <p>{item.answer}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
+];
 
 const FaqSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
-  const whatsappUrl = "https://wa.me/5551920007893?text=" + encodeURIComponent("Olá! Tenho uma dúvida que não encontrei no FAQ e gostaria de falar com um especialista.");
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
-    // ATUALIZAÇÃO: Adicionado id="faq" aqui
     <section id="faq" className={styles.faqSection}>
       <div className={styles.container}>
-        <h2 className={styles.mainTitle}>{faqData.title}</h2>
-        <p className={styles.mainSubtitle}>{faqData.subtitle}</p>
-
-        <div className={styles.faqList}>
-          {faqData.questions.map((item, index) => (
-            <FaqItem
-              key={index}
-              item={item}
-              isOpen={activeIndex === index}
-              onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-            />
-          ))}
+        <div className={styles.headerWrapper}>
+          <h2 className={styles.title}>Dúvidas Frequentes</h2>
+          <p className={styles.subtitle}>
+            Esclareça as principais questões sobre como a Auttoma Engenharia pode transformar a gestão do seu empreendimento.
+          </p>
         </div>
 
-        <div className={styles.ctaBox}>
-          <h3>{faqData.cta.title}</h3>
-          <p>{faqData.cta.text}</p>
-          <div className={styles.buttonGroup}>
-            <a 
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.ctaPrimary}
-            >
-              {faqData.cta.buttons[0].text}
-            </a>
-            <a 
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.ctaSecondary}
-            >
-              {faqData.cta.buttons[1].text}
-            </a>
-          </div>
+        <div className={styles.accordion}>
+          {faqData.map((item, index) => (
+            <div key={index} className={`${styles.item} ${activeIndex === index ? styles.active : ''}`}>
+              <button
+                className={styles.questionButton}
+                onClick={() => toggleAccordion(index)}
+                aria-expanded={activeIndex === index}
+              >
+                <span className={styles.questionText}>
+                  <FaQuestionCircle className={styles.icon} />
+                  {item.question}
+                </span>
+                {activeIndex === index ? <FaChevronUp /> : <FaChevronDown />}
+              </button>
+              
+              <AnimatePresence>
+                {activeIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={styles.answerWrapper}
+                  >
+                    <p className={styles.answer}>{item.answer}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </div>
     </section>

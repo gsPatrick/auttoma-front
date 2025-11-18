@@ -2,38 +2,64 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
+import { FaCheckCircle, FaLightbulb } from 'react-icons/fa';
 import styles from './HowItWorksSection.module.css';
 
+// Dados extraídos do PDF (Páginas 17-22)
 const processSteps = [
   {
     stepNumber: "01",
-    title: "Regularização e Documentação",
-    description: "Análise das necessidades, elaboração de projetos e protocolo no Corpo de Bombeiros, emissão de aprovação.",
-    subItems: [ "Vistoria técnica inicial", "Levantamento das necessidades", "Projeto personalizado", "Tramitação com órgãos competentes", "Obtenção da aprovação" ],
-    backgroundImage: '/images/processo-01.jpg'
+    title: "Concepção e Planejamento",
+    description: "Alinhamento estratégico e técnico inicial.",
+    subItems: [ 
+      "Definição do Escopo e necessidades", 
+      "Planejamento detalhado (cronograma e orçamento)", 
+      "Análise e compatibilização de projetos" 
+    ],
+    // Placeholder: mantenha suas imagens ou use cores sólidas se preferir
+    backgroundImage: '/images/processo-01.jpg' 
   },
   {
     stepNumber: "02",
-    title: "Execução",
-    description: "Implementação das medidas propostas, obras, instalações e ajustes conforme projeto aprovado.",
-    subItems: [ "Instalação de equipamentos", "Implementação de sinalizações", "Execução de obras civis", "Testes de funcionamento", "Ajustes finais" ],
+    title: "Busca e Otimização",
+    description: "Avaliação rigorosa de mercado e custos.",
+    subItems: [ 
+      "Análise técnica de produtos e serviços", 
+      "Otimização de Custos e Benefícios", 
+      "Projetos para Eficiência (Conceito LEED)" 
+    ],
     backgroundImage: '/images/processo-02.jpg'
   },
   {
     stepNumber: "03",
-    title: "Manutenção",
-    description: "Vistorias, laudos e treinamentos contínuos para manter tudo regularizado.",
-    subItems: [ "Visitas técnicas periódicas", "Manutenção preventiva", "Atualização de documentação", "Renovação de laudos", "Treinamento contínuo" ],
+    title: "Gestão e Fiscalização",
+    description: "Supervisão independente e técnica.",
+    subItems: [ 
+      "Gerenciamento de Obras e prazos", 
+      "Fiscalização Independente (Olhos do dono)", 
+      "Mitigação de Riscos e conflitos" 
+    ],
     backgroundImage: '/images/processo-03.jpg'
+  },
+  {
+    stepNumber: "04",
+    title: "Entrega e Desempenho",
+    description: "Garantia de longevidade e resultados.",
+    subItems: [ 
+      "Validação dos Resultados e entregas", 
+      "Planos de Manutenção baseados em NBRs", 
+      "Suporte Pós-Projeto contínuo" 
+    ],
+    backgroundImage: '/images/engenharia-sobre.jpg' // Reutilizando imagem genérica se necessário
   }
 ];
 
-const legalInfo = {
-  title: "Informação Legal Importante",
+// Conteúdo da página 28 do PDF ("Aqui está o seu próximo passo...")
+const conclusionInfo = {
+  title: "O Próximo Passo Rumo à Excelência",
   content: [
-    "No Rio Grande do Sul, a Lei Complementar 14.376/2013 (Lei Kiss) estabelece que é crime deixar de manter o PPCI atualizado. Síndicos, administradores e proprietários são legalmente responsáveis pela segurança contra incêndio nos imóveis.",
-    "Laudos como o LTIP (Laudo Técnico de Inspeção Predial) são obrigatórios para edifícios comerciais e residenciais com marquises ou sacadas, conforme legislação vigente."
+    "Não adie mais a segurança e a eficiência do seu investimento.",
+    "Seja qual for a complexidade do seu empreendimento, temos a experiência e a expertise para garantir projetos de alta performance, redução de custos efetiva, máxima segurança e longevidade para seu patrimônio."
   ]
 };
 
@@ -57,9 +83,9 @@ const HowItWorksSection = () => {
     <section id="processo" className={styles.howItWorksSection}>
       <div className={styles.container}>
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-          <h2 className={styles.mainTitle}>Como Funciona o Processo Defender</h2>
+          <h2 className={styles.mainTitle}>Nosso Processo</h2>
           <p className={styles.mainSubtitle}>
-            Nosso método de trabalho é estruturado para garantir eficiência e resultados, do primeiro contato à manutenção contínua.
+            Uma metodologia estruturada em 4 etapas para transformar e proteger seu patrimônio.
           </p>
         </motion.div>
 
@@ -67,7 +93,7 @@ const HowItWorksSection = () => {
           className={styles.processGrid}
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.3 }} // A animação re-inicia toda vez que entra/sai da tela
+          viewport={{ amount: 0.2 }} 
           variants={containerVariants}
         >
           {processSteps.map((step, index) => (
@@ -78,17 +104,14 @@ const HowItWorksSection = () => {
             >
               <motion.div
                 className={styles.cardFlipper}
-                // ATUALIZAÇÃO PRINCIPAL: A lógica da animação foi alterada
-                // Agora, o estado 'visible' gira e PERMANECE girado.
-                // O estado 'hidden' (quando sai da tela) volta à posição original.
                 variants={{
-                  hidden: { rotateY: 0 }, // Estado inicial (frente)
-                  visible: { // Estado quando está visível (verso)
+                  hidden: { rotateY: 0 },
+                  visible: { 
                     rotateY: 180,
                     transition: {
-                      duration: 0.8, // Duração do giro
+                      duration: 0.8,
                       ease: "easeInOut",
-                      delay: 0.3 + index * 0.2 // Atraso para cada card
+                      delay: 0.2 + index * 0.2 
                     }
                   }
                 }}
@@ -120,18 +143,18 @@ const HowItWorksSection = () => {
         </motion.div>
 
         <motion.div
-          className={styles.legalInfoBox}
+          className={styles.conclusionBox}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className={styles.legalTitle}>
-            <FaExclamationTriangle />
-            {legalInfo.title}
+          <h3 className={styles.conclusionTitle}>
+            <FaLightbulb />
+            {conclusionInfo.title}
           </h3>
-          {legalInfo.content.map((paragraph, index) => (
-            <p key={index} className={styles.legalText}>{paragraph}</p>
+          {conclusionInfo.content.map((paragraph, index) => (
+            <p key={index} className={styles.conclusionText}>{paragraph}</p>
           ))}
         </motion.div>
       </div>

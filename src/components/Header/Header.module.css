@@ -1,16 +1,17 @@
-/* Header com altura ajustada via padding para acomodar a logo perfeitamente */
+/* Header com altura ajustada e paleta Auttoma */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 0.8rem 5%; /* AUMENTADO para dar mais espaço vertical */
+  padding: 1rem 5%;
   z-index: 1000;
-  background-color: var(--color-light-primary);
+  background-color: var(--color-light-primary); /* Branco */
   border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 15px rgba(2, 24, 125, 0.08); /* Sombra sutil azulada */
   display: flex;
   align-items: center;
+  height: 90px; /* Altura fixa consistente */
 }
 
 .container {
@@ -28,8 +29,9 @@
   height: auto;
 }
 
+/* Links de Navegação - Cor Azul Auttoma */
 .navLink, .mobileToggle {
-  color: var(--color-dark-primary);
+  color: var(--color-primary-blue);
 }
 
 .navDesktop {
@@ -40,28 +42,33 @@
   display: none;
 }
 
+/* Botão CTA - Azul com hover Amarelo (Destaque PDF) */
 .ctaButton {
-  background-color: var(--color-primary-red);
-  color: var(--color-light-primary);
+  background-color: var(--color-primary-blue);
+  color: #FFFFFF;
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  border-radius: 8px; /* Bordas levemente arredondadas conforme design moderno */
   font-weight: 600;
   font-family: var(--font-heading);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
 .ctaButton:hover {
-  background-color: var(--color-primary-red-light);
-  transform: scale(1.05);
+  background-color: var(--color-accent-yellow);
+  color: var(--color-primary-blue); /* Texto azul no fundo amarelo */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(2, 24, 125, 0.2);
 }
 
 .whatsappIcon {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
+/* Toggle Mobile */
 .mobileToggle {
   display: block;
   background: none;
@@ -72,6 +79,7 @@
   transition: color 0.3s ease;
 }
 
+/* Menu Mobile */
 .navMobile {
   display: flex;
   flex-direction: column;
@@ -80,24 +88,27 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
   padding: 1rem 5%;
   position: absolute;
-  top: 100%;
+  top: 90px; /* Logo abaixo do header */
   left: 0;
+  border-top: 1px solid #eee;
 }
 
 .navLinkMobile {
   padding: 1rem 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--color-dark-primary);
+  color: var(--color-primary-blue);
   border-bottom: 1px solid var(--color-light-secondary);
 }
 
 .ctaButtonMobile {
   width: 100%;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 
+/* Media Query para Desktop */
 @media (min-width: 1024px) {
   .mobileToggle { display: none; }
   .navMobile { display: none; }
@@ -110,17 +121,24 @@
     position: relative;
     padding-bottom: 0.25rem;
     cursor: pointer;
+    transition: color 0.3s ease;
   }
 
+  .navLink:hover {
+    color: var(--color-primary-blue-light);
+  }
+
+  /* Efeito de sublinhado amarelo */
   .navLink::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background-color: var(--color-primary-red);
+    height: 3px;
+    background-color: var(--color-accent-yellow);
     transition: width 0.3s ease;
+    border-radius: 2px;
   }
 
   .navLink:hover::after {
