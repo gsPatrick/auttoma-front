@@ -25,11 +25,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  align-items: start; /* Impede que estiquem verticalmente */
+  align-items: stretch; /* <-- FORÇA TODAS AS COLUNAS A TEREM A MESMA ALTURA */
 }
 
 /* --- Card Base --- */
 .card {
+    height: 100%;          /* <-- Garante que todos os cards acompanhem o maior */
+
   background: #fff;
   border-radius: 8px; /* Bordas menos arredondadas (mais quadradas) */
   padding: 1.5rem; /* Padding reduzido */
