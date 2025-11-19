@@ -67,9 +67,9 @@ const Footer = () => {
             <Link href="/" className={styles.logoWrapper}>
               {/* Certifique-se de ter esta logo na pasta public */}
               <Image 
-                src="/auttoma-branco.png" 
+                src="/logobranca.png" 
                 alt="Auttoma Engenharia" 
-                width={180} 
+                width={200} 
                 height={150} 
                 className={styles.logoImage} 
                 style={{ objectFit: 'contain' }}
