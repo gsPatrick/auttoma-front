@@ -42,9 +42,9 @@ const aboutData = {
     }
   }
 };
-
+ 
 const AboutSummary = () => {
-  const whatsappUrl = "https://wa.me/5551984448616?text=" + encodeURIComponent("Olá! Vim pelo site e gostaria de conhecer mais sobre a Auttoma.");
+  const whatsappUrl = "https://wa.me/555130295468?text=" + encodeURIComponent("Olá! Vim pelo site e gostaria de conhecer mais sobre a Auttoma.");
 
   return (
     <section id="sobre" className={styles.aboutSection}>
