@@ -86,20 +86,24 @@
   text-align: center;
   border: 2px solid transparent;
   cursor: pointer;
-  /* Cor Normal: Azul Auttoma */
-  background-color: var(--color-primary-blue);
-  color: #fff;
-  border-color: var(--color-primary-blue);
-}
 
-.ctaPrimary:hover {
-  /* Hover: Amarelo Destaque com texto Azul */
+  /* Amarelo padrão */
   background-color: var(--color-accent-yellow);
   border-color: var(--color-accent-yellow);
   color: var(--color-primary-blue);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(2, 24, 125, 0.3);
 }
+
+.ctaPrimary:hover {
+  /* Mantém o amarelo, porém com destaque */
+  background-color: var(--color-accent-yellow);
+  border-color: var(--color-accent-yellow);
+
+  /* Destaque leve */
+  filter: brightness(1.08);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(2, 24, 125, 0.2);
+}
+
 
 .carouselControls {
   position: absolute;
