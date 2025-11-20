@@ -8,19 +8,14 @@ import styles from './TestimonialsSection.module.css';
 
 const testimonialsData = [
   {
-    // Salve a foto em: public/testimonials/andre-fagundes.jpg
     image: '/pnavel.jpeg', 
-    // Salve a logo em: public/logos/panvel.png
-
     name: 'André Fagundes',
     role: 'Gerente de Engenharia – Panvel',
     rating: 5,
     quote: '"A Auttoma Engenharia foi essencial na compatibilização dos projetos executivos e na fiscalização independente das nossas obras de expansão. O nível de precisão técnica e o acompanhamento próximo evitaram retrabalhos e reduziram significativamente nossos custos. Um parceiro extremamente confiável."'
   },
   {
-    // Salve a foto em: public/testimonials/juliana-martins.jpg
     image: '/iguatemi.jpeg',
-    // Salve a logo em: public/logos/iguatemi.png
     logo: '/logos/iguatemi.png',
     name: 'Juliana Martins',
     role: 'Coordenadora de Engenharia – Shopping Iguatemi',
@@ -28,9 +23,7 @@ const testimonialsData = [
     quote: '"Contamos com a Auttoma para desenvolver os planos de manutenção predial e revisar toda documentação técnica das instalações. A equipe demonstrou alto nível de conhecimento normativo e trouxe uma visão estratégica que impactou diretamente na segurança e na longevidade dos nossos sistemas. Trabalho impecável."'
   },
   {
-    // Salve a foto em: public/testimonials/rodrigo-albuquerque.jpg
     image: '/cfl.jpeg',
-    // Salve a logo em: public/logos/cfl.png
     logo: '/logos/cfl.png',
     name: 'Rodrigo Albuquerque',
     role: 'Gerente de Obras – Construtora CFL',
@@ -54,7 +47,8 @@ const itemVariants = {
 
 const TestimonialsSection = () => {
   return (
-    <section className={styles.testimonialsSection}>
+    // ATUALIZADO: Adicionado o ID cases
+    <section id="cases" className={styles.testimonialsSection}>
       <div className={styles.container}>
         <h2 className={styles.mainTitle}>Clientes e Parceiros</h2>
         <p className={styles.mainSubtitle}>
@@ -98,8 +92,6 @@ const TestimonialsSection = () => {
               
               <h3 className={styles.name}>{testimonial.name}</h3>
               <p className={styles.role}>{testimonial.role}</p>
-
-
 
             </motion.div>
           ))}

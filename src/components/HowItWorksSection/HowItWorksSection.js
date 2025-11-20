@@ -17,7 +17,7 @@ const processSteps = [
       "Análise e compatibilização de projetos" 
     ],
     // Placeholder: mantenha suas imagens ou use cores sólidas se preferir
-    backgroundImage: '/images/processo-01.jpg' 
+    backgroundImage: '/processo/processo-01.jpg' 
   },
   {
     stepNumber: "02",
@@ -28,7 +28,7 @@ const processSteps = [
       "Otimização de Custos e Benefícios", 
       "Projetos para Eficiência (Conceito LEED)" 
     ],
-    backgroundImage: '/images/processo-02.jpg'
+    backgroundImage: '/processo/processo-02.jpg'
   },
   {
     stepNumber: "03",
@@ -50,7 +50,7 @@ const processSteps = [
       "Planos de Manutenção baseados em NBRs", 
       "Suporte Pós-Projeto contínuo" 
     ],
-    backgroundImage: '/images/engenharia-sobre.jpg' // Reutilizando imagem genérica se necessário
+    backgroundImage: '/processo/processo-04.jpg' // Reutilizando imagem genérica se necessário
   }
 ];
 

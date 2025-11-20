@@ -15,12 +15,13 @@ const footerData = {
       { name: "LinkedIn", icon: <FaLinkedin />, url: "https://linkedin.com/company/auttomaengenharia" }
     ]
   },
+  // ATUALIZADO: Navegação sincronizada com o Header (Serviços 1º, Cases)
   navigation: [
     { label: "Início", targetId: "hero" },
-    { label: "Sobre Nós", targetId: "sobre" },
     { label: "Serviços", targetId: "servicos" },
+    { label: "Sobre Nós", targetId: "sobre" },
     { label: "Nosso Processo", targetId: "processo" },
-    { label: "Planos de Serviço", targetId: "planos" },
+    { label: "Cases de Sucesso", targetId: "cases" }, // Alterado para Cases
     { label: "Contato", targetId: "contato" }
   ],
   services: [
@@ -65,7 +66,6 @@ const Footer = () => {
           {/* Coluna 1: Info e Logo */}
           <div className={styles.infoColumn}>
             <Link href="/" className={styles.logoWrapper}>
-              {/* Certifique-se de ter esta logo na pasta public */}
               <Image 
                 src="/logotipo-auttoma-engenharia-png.png" 
                 alt="Auttoma Engenharia" 

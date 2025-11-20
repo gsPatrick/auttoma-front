@@ -1,5 +1,5 @@
 .footer {
-  background-color: var(--color-primary-blue); /* Azul Auttoma Escuro */
+  background-color: var(--color-primary-blue);
   color: #FFFFFF;
   padding: 5rem 5% 0 5%;
 }
@@ -144,7 +144,8 @@
 .footerBottom {
   padding: 1.5rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(0, 0, 0, 0.1); /* Ligeiramente mais escuro */
+  /* ATUALIZADO: Removido o background-color escuro para ficar uniforme */
+  background-color: transparent; 
 }
 
 .bottomContent {

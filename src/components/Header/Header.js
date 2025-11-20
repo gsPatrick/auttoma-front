@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
@@ -8,22 +8,21 @@ import styles from './Header.module.css';
 export const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
 
-  // Links baseados no Sumário do PDF da Auttoma
+  // ATUALIZADO: Ordem alterada e "Planos" trocado por "Cases"
   const navLinks = [
     { targetId: 'hero', label: 'Início' },
+    { targetId: 'servicos', label: 'Serviços' }, // Serviços agora vem antes
     { targetId: 'sobre', label: 'Sobre' },
-    { targetId: 'servicos', label: 'Serviços' },
     { targetId: 'processo', label: 'Processo' },
-    { targetId: 'planos', label: 'Planos' },
+    { targetId: 'cases', label: 'Cases' }, // Trocado de 'planos' para 'cases'
     { targetId: 'contato', label: 'Contato' },
   ];
 
-  // Função para compensar o scroll considerando a nova altura do header (110px)
   const handleScrollToSection = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const headerHeight = 110; // Altura atualizada
+      const headerHeight = 110; 
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -39,19 +38,17 @@ export const Header = () => {
       transition={{ type: 'spring', stiffness: 50 }}
     >
       <div className={styles.container}>
-        {/* Logo Auttoma */}
         <a href="#hero" onClick={(e) => handleScrollToSection(e, 'hero')} className={styles.logo}>
           <Image
             src="/auttoma.png"
             alt="Auttoma - Soluções em Automação"
             width={220}
-            height={50} // Levemente maior para aproveitar o espaço extra
+            height={50}
             priority
             className={styles.logoImage}
           />
         </a>
 
-        {/* Navegação Desktop */}
         <nav className={styles.navDesktop}>
           {navLinks.map((link) => (
             <a
@@ -65,7 +62,6 @@ export const Header = () => {
           ))}
         </nav>
 
-        {/* CTA Button */}
         <div className={styles.ctaContainer}>
           <a
             href="#contato"
@@ -77,7 +73,6 @@ export const Header = () => {
           </a>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className={styles.mobileToggle}
           onClick={() => setNavOpen(!navOpen)}
@@ -87,7 +82,6 @@ export const Header = () => {
         </button>
       </div>
 
-      {/* Menu Mobile */}
       <AnimatePresence>
         {navOpen && (
           <motion.nav

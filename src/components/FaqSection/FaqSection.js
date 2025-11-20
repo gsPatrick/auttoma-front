@@ -21,11 +21,8 @@ const faqData = [
   {
     question: "O que é o conceito LEED mencionado nos serviços?",
     answer: "LEED (Leadership in Energy and Environmental Design) é um sistema internacional de certificação ambiental. Aplicamos esses conceitos para projetar sistemas prediais inteligentes que garantem eficiência energética, sustentabilidade e redução de custos operacionais a longo prazo."
-  },
-  {
-    question: "Como funcionam os Planos de Serviço (Bronze, Prata, Ouro)?",
-    answer: "Nossos planos são estruturados para oferecer diferentes níveis de acompanhamento. O Bronze foca em diagnósticos pontuais; o Prata adiciona laudos anuais e visitas bimestrais; e o Ouro oferece gestão completa de contratos e visitas mensais. Escolha o que melhor se adapta à necessidade do seu imóvel."
   }
+  // ATUALIZADO: Pergunta sobre planos removida
 ];
 
 const FaqSection = () => {
